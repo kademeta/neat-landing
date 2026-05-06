@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
+    <script defer src="/_vercel/insights/script.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEAT | Command AI with Precision</title>
-    <meta name="description" content="The elite browser companion for surgical prompt optimization. Instantly compress prompts, redact PII, and reclaim your context window in real-time.">
+    <title>NEAT | Your prompts. Cleaner. Safer. Faster.</title>
+    <meta name="description" content="The privacy-first browser companion that redacts sensitive data and compresses prompts in real-time. Processed 100% locally.">
     
     <!-- Tailwind CSS -->
     <link rel="stylesheet" href="./style.css">
@@ -16,7 +17,7 @@
     
     <style>
         :root {
-            --vibe-orange: #fb923c;
+            --vibe-teal: #10B981;
             --bg-obsidian: #09090b;
         }
 
@@ -28,23 +29,17 @@
             overflow-x: hidden;
         }
 
-        /* HARDWARE ACCELERATED PERFORMANCE */
-        .gpu {
-            transform: translateZ(0);
-            will-change: transform, opacity;
-        }
-
         .glass {
             background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.08);
-            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.3s ease;
         }
 
         .glass:hover {
             background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.12);
         }
 
         .text-gradient {
@@ -54,13 +49,13 @@
         }
 
         .star-glow {
-            filter: drop-shadow(0 0 15px rgba(251, 146, 60, 0.6));
+            filter: drop-shadow(0 0 10px rgba(16, 185, 129, 0.5));
         }
 
         .reveal {
             opacity: 0;
-            transform: translateY(40px);
-            transition: all 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translateY(15px);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
         
         .reveal.active {
@@ -68,39 +63,7 @@
             transform: translateY(0);
         }
 
-        /* Subtle Noise Overlay */
-        .noise {
-            position: fixed;
-            inset: 0;
-            z-index: 50;
-            pointer-events: none;
-            background-image: url("data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PScwIDAgMjAwIDIwMCcgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJz48ZmlsdGVyIGlkPSduJz48ZmVUdXJidWxlbmNlIHR5cGU9J2ZyYWN0YWxOb2lzZScgYmFzZUZyZXF1ZW5jeT0nLjY1JyBudW1PY3RhdmVzPSczJyBzdGl0Y2hUaWxlcz0nc3RpdGNoJy8+PC9maWx0ZXI+PHJlY3Qgd2lkdGg9JzEwMCUnIGhlaWdodD0nMTAwJScgZmlsdGVyPSd1cmwoI24pJy8+PC9zdmc+");
-            opacity: 0.04;
-            mix-blend-mode: overlay;
-        }
-
-        @keyframes pulse-soft {
-            0%, 100% { opacity: 0.2; transform: scale(1); }
-            50% { opacity: 0.35; transform: scale(1.08); }
-        }
-
-        .ambient-glow {
-            animation: pulse-soft 15s ease-in-out infinite;
-        }
-
-        /* Parallax Depth */
-        .parallax-wrapper {
-            perspective: 2500px;
-            transform-style: preserve-3d;
-        }
-
-        .parallax-panel {
-            transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-            transform-style: preserve-3d;
-            will-change: transform;
-        }
-
-        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: var(--bg-obsidian); }
         ::-webkit-scrollbar-thumb { background: #27272a; border-radius: 10px; }
 
@@ -113,268 +76,73 @@
         }
 
         .button-glow {
-            box-shadow: 0 0 60px rgba(251, 146, 60, 0.4);
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 0 30px rgba(16, 185, 129, 0.3);
+            transition: all 0.3s ease;
         }
 
         .button-glow:hover {
-            box-shadow: 0 0 120px rgba(251, 146, 60, 0.6);
-            transform: scale(1.06) translateY(-6px);
+            box-shadow: 0 0 50px rgba(16, 185, 129, 0.5);
+            transform: translateY(-2px);
         }
 
         .sharpen {
             image-rendering: -webkit-optimize-contrast;
             image-rendering: crisp-edges;
         }
+        
+        /* Bento Box specific styling */
+        .bento-card {
+            background: #111113;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 1rem;
+            overflow: hidden;
+            transition: border-color 0.3s ease;
+        }
+        .bento-card:hover {
+            border-color: rgba(16, 185, 129, 0.2);
+        }
     </style>
 </head>
-<body class="selection:bg-orange-500/30 selection:text-white">
-    <div class="noise"></div>
+<body class="selection:bg-emerald-500/30 selection:text-white">
 
     <!-- Navigation -->
-    <nav class="fixed top-0 left-0 right-0 z-[100] flex items-center justify-between px-6 md:px-16 py-8 glass border-b border-white/5 max-w-[1440px] mt-6 mx-auto rounded-full md:w-[92%] gpu">
+    <nav class="fixed top-0 left-0 right-0 z-[100] flex items-center justify-between px-8 py-3.5 glass border-b border-white/5 max-w-[1100px] mt-6 mx-auto rounded-full w-[95%]">
         <div class="flex items-center">
-            <svg id="neat-logo-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 212.142 83.375" class="h-8 md:h-10 text-white">
-                <g id="neat-logo-elements">
-                    <!-- Sparkle Star (Green) -->
-                    <path
-                        d="M196.906,14.221l2.8,22.344c.142,1.132.955,2.066,2.056,2.362l9.559,2.574c1.095.295,1.095,1.848,0,2.142l-9.82,2.644c-.966.26-1.721,1.015-1.981,1.981l-2.644,9.82c-.295,1.095-1.848,1.095-2.142,0l-2.644-9.82c-.26-.966-1.015-1.721-1.981-1.981l-9.82-2.644c-1.095-.295-1.095-1.848,0-2.142l9.559-2.574c1.102-.297,1.914-1.23,2.056-2.362l2.8-22.344c.162-1.295,2.039-1.295,2.201,0Z"
-                        fill="#10B981"
-                        style="filter: drop-shadow(0 0 12px rgba(16, 185, 129, 0.6));"
-                    />
-                    <!-- NEAT Text -->
+            <!-- Simple clean logo text for the nav to keep it subtle, full logo is in hero -->
+            <span class="text-white font-bold tracking-widest uppercase text-sm flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 212.142 83.375" class="h-4">
+                    <path d="M196.906,14.221l2.8,22.344c.142,1.132.955,2.066,2.056,2.362l9.559,2.574c1.095.295,1.095,1.848,0,2.142l-9.82,2.644c-.966.26-1.721,1.015-1.981,1.981l-2.644,9.82c-.295,1.095-1.848,1.095-2.142,0l-2.644-9.82c-.26-.966-1.015-1.721-1.981-1.981l-9.82-2.644c-1.095-.295-1.095-1.848,0-2.142l9.559-2.574c1.102-.297,1.914-1.23,2.056-2.362l2.8-22.344c.162-1.295,2.039-1.295,2.201,0Z" fill="#10B981" class="star-glow"/>
                     <g fill="currentColor">
                         <path d="M11.593,21.236v38.739h-5.976V11.947h6.12l27.65,37.947V11.947h5.977v48.028h-5.76L11.593,21.236Z" />
                         <path d="M56.592,11.947h31.466v5.329h-25.49v15.481h24.986v5.328h-24.986v16.562h25.49v5.329h-31.466V11.947Z" />
                         <path d="M127.801,49.319h-24.338l-4.249,10.657h-6.625l19.298-48.028h7.417l19.37,48.028h-6.624l-4.249-10.657ZM105.191,43.99h20.81l-10.369-26.714-10.441,26.714Z" />
                         <path d="M151.992,17.276h-15.192v-5.329h36.435v5.329h-15.266v42.7h-5.977V17.276Z" />
                     </g>
-                </g>
-            </svg>
+                </svg>
+            </span>
         </div>
         
-        <div class="hidden md:flex items-center gap-12 text-[11px] font-bold tracking-[0.4em] text-zinc-500">
-            <a href="#how" class="hover:text-white transition-all uppercase">How It Works</a>
-            <a href="#features" class="hover:text-white transition-all uppercase">Features</a>
-            <a href="#faq" class="hover:text-white transition-all uppercase">FAQ</a>
+        <div class="hidden md:flex items-center gap-8 text-[13px] font-medium text-zinc-400">
+            <a href="#how" class="hover:text-white transition-colors">How It Works</a>
+            <a href="#features" class="hover:text-white transition-colors">Features</a>
+            <a href="#showcase" class="hover:text-white transition-colors">Showcase</a>
         </div>
 
-        <button onclick="openBetaModal()" class="px-8 py-3.5 bg-white text-black rounded-full text-xs font-black uppercase tracking-widest hover:bg-orange-400 transition-all flex items-center gap-2 shadow-xl active:scale-95">
+        <button onclick="openBetaModal()" class="px-5 py-2 bg-white text-black rounded-full text-sm font-semibold hover:bg-emerald-500 hover:text-white transition-colors shadow-sm active:scale-95">
             Add to Chrome
         </button>
     </nav>
 
     <!-- Hero Section -->
-    <section class="relative min-h-screen flex flex-col items-center justify-center pt-32 pb-20 px-6 overflow-hidden">
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] bg-orange-500/5 blur-[150px] rounded-full ambient-glow pointer-events-none"></div>
+    <section class="relative min-h-screen flex flex-col items-center justify-center pt-32 pb-20 px-6 overflow-hidden bg-gradient-to-b from-[#09090b] to-[#0d0d12]">
         
-        <div class="container mx-auto relative z-10 text-center reveal active gpu">
-            <div class="inline-flex items-center gap-3 px-5 py-2 mb-12 text-[11px] font-black tracking-[0.4em] text-orange-400 uppercase bg-orange-500/10 border border-orange-500/20 rounded-full">
-                Surgical Prompt Optimization
-            </div>
+        <div class="container mx-auto max-w-3xl relative z-10 text-center reveal active">
             
-            <h1 class="text-7xl md:text-[145px] font-black tracking-tighter mb-14 leading-[0.75] text-gradient">
-                COMMAND AI <br> WITH PRECISION.
-            </h1>
-            
-            <p class="max-w-4xl mx-auto text-xl md:text-3xl text-zinc-400 mb-20 font-medium leading-relaxed tracking-tight">
-                Compress prompts, redact PII, and reclaim your context window — all locally, in real-time.
-            </p>
-
-            <div class="flex flex-col md:flex-row items-center justify-center gap-12">
-                <button onclick="openBetaModal()" class="w-full md:w-auto px-28 py-12 bg-white text-black rounded-[3.5rem] text-5xl font-black button-glow active:scale-95">
-                    Add to Chrome — It’s Free
-                </button>
-                <a href="#how" class="w-full md:w-auto px-20 py-12 bg-zinc-900/40 backdrop-blur-md text-white rounded-[3.5rem] text-2xl font-bold border border-zinc-800 hover:bg-zinc-800/60 transition-all text-center flex items-center justify-center opacity-80 hover:opacity-100">
-                    View Experience
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Surgical Workflow Section -->
-    <section id="how" class="py-60 bg-[#070709] px-6">
-        <div class="container mx-auto">
-            <div class="max-w-5xl mb-48 reveal gpu">
-                <h2 class="text-6xl md:text-[11rem] font-black text-white mb-10 tracking-tighter italic uppercase leading-none">Surgical <br> Workflow.</h2>
-                <div class="h-2 w-40 bg-orange-400 shadow-[0_0_20px_rgba(251,146,60,0.5)]"></div>
-            </div>
-
-            <div class="space-y-64 md:space-y-96">
-                <!-- Step 1 -->
-                <div class="relative flex flex-col md:flex-row items-center reveal gpu parallax-wrapper">
-                    <div class="w-full md:w-[45%] relative z-20 md:-mr-[15%] space-y-8 md:space-y-12 mb-12 md:mb-0">
-                        <div class="text-9xl md:text-[15rem] font-black text-white/[0.02] select-none leading-none -ml-4 absolute -top-16 md:-top-32 -z-10 pointer-events-none">01</div>
-                        <h3 class="text-5xl md:text-8xl font-black italic tracking-tighter leading-tight drop-shadow-2xl">Unified Control.</h3>
-                        <p class="text-2xl md:text-3xl text-zinc-400 font-medium leading-relaxed drop-shadow-lg">The NEAT Toolbar embeds surgical controls directly into ChatGPT, Claude, and Grok. Toggle optimization modes and privacy shields with a single, elegant click. Mastery, without friction.</p>
-                    </div>
-                    <div class="w-full md:w-[70%] glass aspect-video rounded-[4rem] shadow-[0_0_100px_rgba(0,0,0,0.8)] overflow-hidden relative border-white/10 group parallax-panel">
-                        <!-- Dark Gradient Fade -->
-                        <div class="absolute inset-y-0 left-0 w-[30%] bg-gradient-to-r from-[#070709]/90 to-transparent z-10 pointer-events-none hidden md:block"></div>
-                        
-                        <div class="w-full h-full flex items-center justify-center relative z-0">
-                            <img src="assets/workflow-01-unified-control.png" alt="NEAT Unified Toolbar" class="w-full h-full object-contain opacity-90 group-hover:opacity-100 transition-opacity duration-700 sharpen">
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Step 2 -->
-                <div class="relative flex flex-col md:flex-row-reverse items-center reveal gpu parallax-wrapper">
-                    <div class="w-full md:w-[45%] relative z-20 md:-ml-[15%] space-y-8 md:space-y-12 mb-12 md:mb-0 text-left md:text-right">
-                        <div class="text-9xl md:text-[15rem] font-black text-white/[0.02] select-none leading-none -mr-4 absolute -top-16 md:-top-32 -z-10 pointer-events-none md:right-0">02</div>
-                        <h3 class="text-5xl md:text-8xl font-black italic tracking-tighter leading-tight drop-shadow-2xl">Live Optimization.</h3>
-                        <p class="text-2xl md:text-3xl text-zinc-400 font-medium leading-relaxed drop-shadow-lg">Reclaim your context window in real-time. As you type, NEAT provides a live minification preview, quantifying your token savings before you hit send. Same logic, significantly less waste.</p>
-                    </div>
-                    <div class="w-full md:w-[70%] glass aspect-video rounded-[4rem] shadow-[0_0_100px_rgba(0,0,0,0.8)] overflow-hidden relative border-white/10 group parallax-panel">
-                        <!-- Dark Gradient Fade -->
-                        <div class="absolute inset-y-0 right-0 w-[30%] bg-gradient-to-l from-[#070709]/90 to-transparent z-10 pointer-events-none hidden md:block"></div>
-                        
-                        <div class="w-full h-full flex items-center justify-center relative z-0">
-                            <video 
-                                id="workflow-video"
-                                src="assets/live-optimization-loop.mp4" 
-                                autoplay 
-                                muted 
-                                playsinline
-                                class="w-full h-full object-contain opacity-90 group-hover:opacity-100 transition-opacity duration-700"
-                            ></video>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Step 3 -->
-                <div class="relative flex flex-col md:flex-row items-center reveal gpu parallax-wrapper">
-                    <div class="w-full md:w-[45%] relative z-20 md:-mr-[15%] space-y-8 md:space-y-12 mb-12 md:mb-0">
-                        <div class="text-9xl md:text-[15rem] font-black text-white/[0.02] select-none leading-none -ml-4 absolute -top-16 md:-top-32 -z-10 pointer-events-none">03</div>
-                        <h3 class="text-5xl md:text-8xl font-black italic tracking-tighter leading-tight drop-shadow-2xl">Privacy & Recovery.</h3>
-                        <p class="text-2xl md:text-3xl text-zinc-400 font-medium leading-relaxed drop-shadow-lg">PII Shield redacts secrets locally. If a compression isn't perfect, our Recovery button restores your original text instantly. Surgical precision with an absolute safety net.</p>
-                    </div>
-                    <div class="w-full md:w-[70%] glass aspect-video rounded-[4rem] shadow-[0_0_100px_rgba(0,0,0,0.8)] overflow-hidden relative border-white/10 group parallax-panel">
-                        <!-- Dark Gradient Fade -->
-                        <div class="absolute inset-y-0 left-0 w-[30%] bg-gradient-to-r from-[#070709]/90 to-transparent z-10 pointer-events-none hidden md:block"></div>
-                        
-                        <div class="w-full h-full flex items-center justify-center relative z-0">
-                            <img src="assets/workflow-03-privacy-recovery.png" alt="NEAT Privacy Shield and Recovery" class="w-full h-full object-contain opacity-90 group-hover:opacity-100 transition-opacity duration-700 sharpen">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Precision Tools (Features) -->
-    <section id="features" class="py-40 bg-black px-6">
-        <div class="container mx-auto">
-            <h2 class="text-center text-5xl md:text-[10rem] font-black tracking-tighter mb-48 reveal gpu italic uppercase">Precision Tools.</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-14">
-                <!-- Smart Mode -->
-                <div class="group p-16 rounded-[4.5rem] bg-zinc-900/20 border border-white/5 hover:border-orange-500/20 transition-all duration-700 reveal gpu">
-                    <div class="mb-12 w-20 h-20 bg-zinc-800 rounded-[2.5rem] flex items-center justify-center text-orange-400 group-hover:scale-110 transition-transform">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                    </div>
-                    <h4 class="text-3xl font-bold mb-6">Smart Mode</h4>
-                    <p class="text-xl text-zinc-500 font-medium leading-relaxed">Balanced precision. Removes fluff and redundancy while fully protecting your intent and code structure.</p>
-                </div>
-                <!-- Vibe Mode -->
-                <div class="p-16 rounded-[4.5rem] bg-orange-400 text-black shadow-[0_0_150px_rgba(251,146,60,0.2)] hover:scale-[1.03] transition-all duration-700 reveal gpu">
-                    <div class="flex items-center justify-between mb-12">
-                        <div class="w-20 h-20 bg-black rounded-[2.5rem] flex items-center justify-center text-orange-400 shadow-2xl">
-                             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                        </div>
-                        <span class="text-xs font-black border border-black/30 rounded-full px-6 py-2 uppercase tracking-[0.4em]">PRO</span>
-                    </div>
-                    <h4 class="text-4xl font-black italic uppercase tracking-tighter mb-6 leading-none">Vibe Mode</h4>
-                    <p class="text-xl font-extrabold leading-relaxed text-black/90">Nuclear compression for power users. Aggressively strips every non-essential token while preserving meaning on even the longest prompts.</p>
-                </div>
-                <!-- PII Shield -->
-                <div class="group p-16 rounded-[4.5rem] bg-zinc-900/20 border border-white/5 hover:border-orange-500/20 transition-all duration-700 reveal gpu">
-                    <div class="mb-12 w-20 h-20 bg-zinc-800 rounded-[2.5rem] flex items-center justify-center text-orange-400 group-hover:scale-110 transition-transform">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                    </div>
-                    <h4 class="text-3xl font-bold mb-6">PII Shield</h4>
-                    <p class="text-xl text-zinc-500 font-medium leading-relaxed">Absolute privacy. Locally detects and masks sensitive data before it reaches the LLM cloud. Security by architecture, not promise.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section id="faq" class="py-40 bg-black px-6">
-        <div class="container mx-auto max-w-5xl">
-            <h2 class="text-5xl md:text-[11rem] font-black text-white mb-32 tracking-tighter reveal gpu italic uppercase leading-none">Common <br> Questions.</h2>
-            <div class="space-y-14">
-                <div class="reveal gpu border-b border-white/5 pb-14">
-                    <h4 class="text-3xl font-bold text-white mb-6">Is NEAT private?</h4>
-                    <p class="text-2xl text-zinc-500 font-medium leading-relaxed">Every optimization and redaction happens locally. We have zero servers and zero access to your data. Privacy is built into the architecture.</p>
-                </div>
-                <div class="reveal gpu border-b border-white/5 pb-14">
-                    <h4 class="text-3xl font-bold text-white mb-4">Which platforms are supported?</h4>
-                    <p class="text-2xl text-zinc-500 font-medium leading-relaxed">NEAT is surgical on ChatGPT, Claude, and Grok. Our toolbar embeds controls directly into the native interfaces you already use.</p>
-                </div>
-                <div class="reveal gpu border-b border-white/5 pb-14">
-                    <h4 class="text-3xl font-bold text-white mb-6">How much can I save?</h4>
-                    <p class="text-2xl text-zinc-500 font-medium leading-relaxed">Most users see 20–50% token reduction on complex prompts. Vibe Mode regularly hits 40–60%+ on long technical work.</p>
-                </div>
-                <div class="reveal gpu border-b border-white/5 pb-14">
-                    <h4 class="text-3xl font-bold text-white mb-6">Can I restore my prompt?</h4>
-                    <p class="text-2xl text-zinc-500 font-medium leading-relaxed">Always. Our Recovery button allows you to instantly revert any compression. You are always in absolute control of your input.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Email Signup Section -->
-    <section id="subscribe-section" class="py-60 bg-[#070709] px-6">
-        <div class="container mx-auto max-w-4xl reveal gpu">
-            <div class="glass p-16 md:p-32 rounded-[5rem] text-center space-y-16 border-white/10 shadow-[0_0_100px_rgba(0,0,0,0.5)]">
-                <div class="space-y-8">
-                    <h2 class="text-5xl md:text-8xl font-black tracking-tighter italic uppercase leading-none">Stay in the loop.</h2>
-                    <p class="text-2xl text-zinc-500 font-medium leading-relaxed max-w-2xl mx-auto">Get early access to Vibe Mode updates, Pro features, and surgical optimization strategies.</p>
-                </div>
-                <form action="https://buttondown.com/api/emails/embed-subscribe/kademeta" method="post" class="embeddable-buttondown-form w-full max-w-2xl mx-auto">
-                    <div class="flex flex-col md:flex-row items-center gap-6 p-4 bg-black/50 rounded-[3.5rem] border border-white/5">
-                        <label for="bd-email" class="sr-only">Enter your email</label>
-                        <input type="email" name="email" id="bd-email" placeholder="you@email.com" required class="flex-1 w-full bg-transparent px-12 py-6 text-2xl font-medium outline-none placeholder:text-zinc-700 text-white">
-                        <input type="submit" value="Subscribe" class="w-full md:w-auto px-16 py-7 bg-orange-400 text-black rounded-[2.5rem] text-2xl font-black hover:bg-[#fb923c] transition-all active:scale-95 whitespace-nowrap cursor-pointer hover:shadow-[0_0_30px_rgba(251,146,60,0.3)]">
-                    </div>
-                    <p class="mt-8 text-center text-zinc-600 text-xs font-medium">
-                        By subscribing, you agree to our <a href="#" class="text-zinc-400 hover:text-white transition-colors underline decoration-white/20 underline-offset-2">Privacy Policy</a>. 
-                        <br class="md:hidden">
-                        <a href="https://buttondown.com/refer/kademeta" target="_blank" class="text-zinc-700 hover:text-zinc-500 transition-colors ml-0 md:ml-2 mt-2 md:mt-0 inline-block">
-                            Powered by Buttondown.
-                        </a>
-                    </p>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- Final CTA Section -->
-    <section class="py-60 bg-black text-center relative overflow-hidden px-6">
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-orange-500/5 blur-[180px] rounded-full ambient-glow pointer-events-none"></div>
-        <div class="container mx-auto relative z-10 reveal active gpu">
-            <h2 class="text-7xl md:text-[16rem] font-black text-white mb-14 tracking-tighter leading-tight italic uppercase">Get NEAT.</h2>
-            <p class="text-3xl md:text-4xl text-zinc-500 mb-24 max-w-3xl mx-auto font-medium leading-relaxed tracking-tight">Surgical precision for the elite prompt engineer. <br> Stop wasting tokens. Command with clarity.</p>
-            <button onclick="openBetaModal()" class="px-32 py-12 bg-white text-black rounded-[3.5rem] text-5xl font-black button-glow active:scale-95">
-                Add to Chrome — It’s Free
-            </button>
-            <div class="mt-20 text-zinc-700 font-black uppercase tracking-[0.8em] text-sm">V1.1.0 · PUBLIC ACCESS ESTABLISHED</div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="py-32 bg-black border-t border-white/5 px-6">
-        <div class="container mx-auto flex flex-col md:flex-row items-center justify-between gap-16">
-            <div class="flex items-center mb-8 md:mb-0">
-                <svg id="neat-logo-full-footer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 212.142 83.375" class="h-10 md:h-12 text-white">
-                    <g id="neat-logo-elements-footer">
-                        <!-- Sparkle Star (Green) -->
-                        <path
-                            d="M196.906,14.221l2.8,22.344c.142,1.132.955,2.066,2.056,2.362l9.559,2.574c1.095.295,1.095,1.848,0,2.142l-9.82,2.644c-.966.26-1.721,1.015-1.981,1.981l-2.644,9.82c-.295,1.095-1.848,1.095-2.142,0l-2.644-9.82c-.26-.966-1.015-1.721-1.981-1.981l-9.82-2.644c-1.095-.295-1.095-1.848,0-2.142l9.559-2.574c1.102-.297,1.914-1.23,2.056-2.362l2.8-22.344c.162-1.295,2.039-1.295,2.201,0Z"
-                            fill="#10B981"
-                            style="filter: drop-shadow(0 0 12px rgba(16, 185, 129, 0.6));"
-                        />
-                        <!-- NEAT Text -->
+            <!-- Prominent Logo -->
+            <div class="mb-10 flex justify-center">
+                <svg id="neat-logo-full-hero" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 212.142 83.375" class="h-16 text-white">
+                    <g id="neat-logo-elements-hero">
+                        <path d="M196.906,14.221l2.8,22.344c.142,1.132.955,2.066,2.056,2.362l9.559,2.574c1.095.295,1.095,1.848,0,2.142l-9.82,2.644c-.966.26-1.721,1.015-1.981,1.981l-2.644,9.82c-.295,1.095-1.848,1.095-2.142,0l-2.644-9.82c-.26-.966-1.015-1.721-1.981-1.981l-9.82-2.644c-1.095-.295-1.095-1.848,0-2.142l9.559-2.574c1.102-.297,1.914-1.23,2.056-2.362l2.8-22.344c.162-1.295,2.039-1.295,2.201,0Z" fill="#10B981" class="star-glow"/>
                         <g fill="currentColor">
                             <path d="M11.593,21.236v38.739h-5.976V11.947h6.12l27.65,37.947V11.947h5.977v48.028h-5.76L11.593,21.236Z" />
                             <path d="M56.592,11.947h31.466v5.329h-25.49v15.481h24.986v5.328h-24.986v16.562h25.49v5.329h-31.466V11.947Z" />
@@ -384,43 +152,299 @@
                     </g>
                 </svg>
             </div>
-            <div class="flex gap-16 text-[12px] font-bold tracking-[0.7em] text-zinc-800 uppercase">
+            
+            <h1 class="text-4xl md:text-6xl font-black tracking-tight mb-6 leading-tight text-gradient">
+                Your prompts.<br>Cleaner. Safer. Faster.
+            </h1>
+            
+            <p class="text-base md:text-lg text-zinc-400 mb-10 font-medium leading-relaxed max-w-xl mx-auto">
+                The privacy-first browser companion that redacts sensitive data and compresses prompts in real-time. Processed 100% locally.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <button onclick="openBetaModal()" class="w-full sm:w-auto px-6 py-3.5 bg-emerald-500 text-black rounded-full text-base font-bold button-glow active:scale-95 hover:bg-emerald-400">
+                    Add NEAT to Chrome — Free Private Beta
+                </button>
+            </div>
+            
+            <!-- Hero Mockup Insert -->
+            <div class="mt-16 relative max-w-3xl mx-auto rounded-2xl overflow-hidden shadow-2xl border border-white/10 p-1 bg-[#111113]">
+                 <img src="assets/screenshot-dash-final-ultimate.png" alt="NEAT Interface" class="w-full rounded-xl sharpen opacity-95 hover:opacity-100 transition-opacity">
+            </div>
+        </div>
+    </section>
+
+    <!-- Surgical Workflow Section -->
+    <section id="how" class="py-24 bg-[#0d0d12] px-6">
+        <div class="container mx-auto max-w-6xl">
+            <div class="text-center mb-20 reveal">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">How It Works</h2>
+                <div class="h-1 w-12 bg-emerald-500 mx-auto rounded-full"></div>
+            </div>
+
+            <div class="space-y-24">
+                <!-- Step 1 -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center reveal">
+                    <div class="space-y-4 order-2 md:order-1 text-center md:text-left">
+                        <div class="text-emerald-500 font-bold text-xs uppercase tracking-widest">01 / Integration</div>
+                        <h3 class="text-2xl md:text-3xl font-bold tracking-tight text-white">Installs where you already work.</h3>
+                        <p class="text-sm md:text-base text-zinc-400 leading-relaxed">NEAT embeds a lightweight, unobtrusive control pill directly into ChatGPT, Claude, and Grok. No new apps to learn, just instant access to powerful prompt tools right where you need them.</p>
+                    </div>
+                    <div class="order-1 md:order-2 bg-[#111113] aspect-video rounded-xl border border-white/5 flex items-center justify-center p-2 shadow-lg">
+                         <img src="assets/workflow-01-unified-control.png" alt="Unified Toolbar" class="w-full h-full object-cover sharpen rounded-md border border-white/5">
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center reveal">
+                    <div class="bg-[#111113] aspect-video rounded-xl border border-white/5 flex items-center justify-center p-2 shadow-lg">
+                        <div class="w-full h-full bg-[#09090b] rounded-md border border-white/5 flex items-center justify-center text-emerald-500/50 font-mono text-sm tracking-widest">
+                            [PII_REDACTED]
+                        </div>
+                    </div>
+                    <div class="space-y-4 text-center md:text-left">
+                        <div class="text-emerald-500 font-bold text-xs uppercase tracking-widest">02 / Privacy</div>
+                        <h3 class="text-2xl md:text-3xl font-bold tracking-tight text-white">Absolute privacy by default.</h3>
+                        <p class="text-sm md:text-base text-zinc-400 leading-relaxed">NEAT automatically detects and masks sensitive personally identifiable information before it ever leaves your browser. Zero data collection, zero external API calls.</p>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center reveal">
+                    <div class="space-y-4 order-2 md:order-1 text-center md:text-left">
+                        <div class="text-emerald-500 font-bold text-xs uppercase tracking-widest">03 / Compression</div>
+                        <h3 class="text-2xl md:text-3xl font-bold tracking-tight text-white">Maximum compression.</h3>
+                        <p class="text-sm md:text-base text-zinc-400 leading-relaxed">Intelligently strip redundancy and fluff from your prompts with a single click. Save tokens, reduce API costs, and keep your large conversations well within their context limits.</p>
+                    </div>
+                    <div class="order-1 md:order-2 bg-[#111113] aspect-video rounded-xl border border-white/5 flex items-center justify-center p-2 shadow-lg">
+                        <video 
+                            id="workflow-video"
+                            src="assets/live-optimization-loop.mp4" 
+                            autoplay 
+                            muted 
+                            playsinline
+                            class="w-full h-full object-cover rounded-md border border-white/5"
+                        ></video>
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center reveal">
+                    <div class="bg-[#111113] aspect-video rounded-xl border border-white/5 flex items-center justify-center p-2 shadow-lg">
+                        <img src="assets/workflow-03-privacy-recovery.png" alt="Context Injectors" class="w-full h-full object-cover sharpen rounded-md border border-white/5">
+                    </div>
+                    <div class="space-y-4 text-center md:text-left">
+                        <div class="text-emerald-500 font-bold text-xs uppercase tracking-widest">04 / Speed</div>
+                        <h3 class="text-2xl md:text-3xl font-bold tracking-tight text-white">Your knowledge, instantly.</h3>
+                        <p class="text-sm md:text-base text-zinc-400 leading-relaxed">Build a local library of reusable code snippets, system instructions, and context blocks. Inject them effortlessly using our intuitive tag syntax to maintain consistency across every chat.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-20 flex justify-center reveal">
+                <button onclick="openBetaModal()" class="px-6 py-3.5 bg-emerald-500 text-black rounded-full text-base font-bold button-glow active:scale-95 hover:bg-emerald-400">
+                    Add to Chrome
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Features -->
+    <section id="features" class="py-24 bg-[#09090b] px-6">
+        <div class="container mx-auto max-w-5xl">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl font-bold tracking-tight text-white mb-3">Core Capabilities</h2>
+                <p class="text-zinc-400 text-sm md:text-base">Everything you need for elite prompt engineering.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="p-6 rounded-xl bg-[#111113] border border-white/5 hover:border-emerald-500/30 transition-colors reveal">
+                    <div class="mb-4 w-10 h-10 bg-emerald-500/10 rounded-full flex items-center justify-center text-emerald-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
+                    <h4 class="text-lg font-bold mb-2 text-white">100% Local Processing</h4>
+                    <p class="text-sm text-zinc-400 leading-relaxed">Your data never leaves your machine. Every redaction, compression, and injection happens entirely within your browser.</p>
+                </div>
+                <div class="p-6 rounded-xl bg-[#111113] border border-white/5 hover:border-emerald-500/30 transition-colors reveal">
+                    <div class="mb-4 w-10 h-10 bg-emerald-500/10 rounded-full flex items-center justify-center text-emerald-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+                    </div>
+                    <h4 class="text-lg font-bold mb-2 text-white">Real-Time Insights</h4>
+                    <p class="text-sm text-zinc-400 leading-relaxed">Track exactly how many tokens—and how much money—you’re saving with our beautiful, built-in analytics dashboard.</p>
+                </div>
+                <div class="p-6 rounded-xl bg-[#111113] border border-white/5 hover:border-emerald-500/30 transition-colors reveal">
+                    <div class="mb-4 w-10 h-10 bg-emerald-500/10 rounded-full flex items-center justify-center text-emerald-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+                    </div>
+                    <h4 class="text-lg font-bold mb-2 text-white">One-Click Recovery</h4>
+                    <p class="text-sm text-zinc-400 leading-relaxed">Made a mistake? A single click instantly restores your original, uncompressed prompt text.</p>
+                </div>
+                <div class="p-6 rounded-xl bg-[#111113] border border-white/5 hover:border-emerald-500/30 transition-colors reveal">
+                    <div class="mb-4 w-10 h-10 bg-emerald-500/10 rounded-full flex items-center justify-center text-emerald-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><line x1="3" x2="21" y1="9" y2="9"/><line x1="9" x2="9" y1="21" y2="9"/></svg>
+                    </div>
+                    <h4 class="text-lg font-bold mb-2 text-white">Cross-Platform Ready</h4>
+                    <p class="text-sm text-zinc-400 leading-relaxed">Engineered to work flawlessly across the leading AI platforms: ChatGPT, Claude, and Grok.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof / Bento Box -->
+    <section id="showcase" class="py-24 bg-[#0d0d12] px-6 border-y border-white/5">
+        <div class="container mx-auto max-w-5xl reveal">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-white mb-3">Built for power users.</h2>
+                <p class="text-sm md:text-base text-zinc-400 max-w-xl mx-auto">Demand efficiency and privacy without compromising your workflow. See the tangible impact on your token usage from day one.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto items-start">
+                
+                <!-- Left Column -->
+                <div class="flex flex-col gap-6">
+                    <!-- Card 1: Insights Dashboard -->
+                    <div class="bento-card p-6 flex flex-col group">
+                        <div class="mb-4">
+                            <h4 class="text-lg font-bold text-white">Performance Insights</h4>
+                            <p class="text-sm text-zinc-500">Track tokens and cost savings in real-time.</p>
+                        </div>
+                        <div class="rounded-xl overflow-hidden border border-white/5 bg-black/50 flex-1 flex items-center justify-center p-2">
+                            <img src="assets/screenshot-dash-final-ultimate.png" alt="Insights Dashboard" class="w-full object-contain sharpen rounded-lg shadow-md opacity-90 group-hover:opacity-100 transition-opacity">
+                        </div>
+                    </div>
+                    
+                    <!-- Card 3: Vibe Active -->
+                    <div class="bento-card p-6 flex flex-col group">
+                        <div class="mb-4">
+                            <h4 class="text-lg font-bold text-white">Vibe Mode Active</h4>
+                            <p class="text-sm text-zinc-500">Intelligent compression in action.</p>
+                        </div>
+                        <div class="rounded-xl overflow-hidden border border-white/5 bg-black/50 flex-1 flex items-center justify-center p-2">
+                            <img src="assets/workflow-01-unified-control.png" alt="Vibe Toolbar" class="w-full object-contain sharpen rounded-lg shadow-md opacity-90 group-hover:opacity-100 transition-opacity">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column -->
+                <div class="flex flex-col gap-6">
+                    <!-- Card 2: Settings (Vertical Bento) -->
+                    <div class="bento-card p-6 flex flex-col group">
+                        <div class="mb-4">
+                            <h4 class="text-lg font-bold text-white">Granular Control</h4>
+                            <p class="text-sm text-zinc-500">Manage compression and privacy shields.</p>
+                        </div>
+                        <div class="rounded-xl overflow-hidden border border-white/5 bg-black/50 flex-1 flex items-center justify-center p-2">
+                            <img src="assets/screenshot-settings-vertical.png" alt="Settings" class="w-full object-contain sharpen rounded-lg shadow-md opacity-90 group-hover:opacity-100 transition-opacity">
+                        </div>
+                    </div>
+
+                    <!-- Card 4: Context Injectors -->
+                    <div class="bento-card p-6 flex flex-col group">
+                        <div class="mb-4">
+                            <h4 class="text-lg font-bold text-white">Context Tags</h4>
+                            <p class="text-sm text-zinc-500">Inject massive prompts instantly.</p>
+                        </div>
+                        <div class="rounded-xl overflow-hidden border border-white/5 bg-black/50 flex-1 flex items-center justify-center p-2">
+                            <img src="assets/workflow-03-privacy-recovery.png" alt="Context Tags" class="w-full object-contain sharpen rounded-lg shadow-md opacity-90 group-hover:opacity-100 transition-opacity">
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="mt-12 flex justify-center reveal">
+                <button onclick="openBetaModal()" class="px-6 py-3.5 bg-emerald-500 text-black rounded-full text-base font-bold button-glow active:scale-95 hover:bg-emerald-400">
+                    Add to Chrome
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-24 bg-[#09090b] px-6">
+        <div class="container mx-auto max-w-2xl">
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-12 text-center tracking-tight">Common Questions</h2>
+            <div class="space-y-6">
+                <div class="reveal border-b border-white/5 pb-6">
+                    <h4 class="text-base font-bold text-white mb-2">Is my data sent to your servers?</h4>
+                    <p class="text-sm text-zinc-400 leading-relaxed">No. NEAT operates entirely on your local machine. We do not track, store, or transmit your prompts or personal data.</p>
+                </div>
+                <div class="reveal border-b border-white/5 pb-6">
+                    <h4 class="text-base font-bold text-white mb-2">Which AI platforms are supported?</h4>
+                    <p class="text-sm text-zinc-400 leading-relaxed">NEAT currently integrates seamlessly with the web interfaces of ChatGPT, Claude, and Grok.</p>
+                </div>
+                <div class="reveal border-b border-white/5 pb-6">
+                    <h4 class="text-base font-bold text-white mb-2">How much can Vibe Mode really save?</h4>
+                    <p class="text-sm text-zinc-400 leading-relaxed">Depending on the verbosity of the original text, power users frequently see prompt lengths reduced by 30–50% without losing critical context.</p>
+                </div>
+                <div class="reveal pb-2">
+                    <h4 class="text-base font-bold text-white mb-2">What happens if PII Shield makes an error?</h4>
+                    <p class="text-sm text-zinc-400 leading-relaxed">You retain full control. Our One-Click Recovery feature allows you to instantly revert any redaction or compression back to its original state.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="py-32 bg-[#0d0d12] text-center relative overflow-hidden px-6 border-t border-white/5">
+        <div class="container mx-auto relative z-10 reveal active">
+            <h2 class="text-3xl md:text-5xl font-black text-white mb-4 tracking-tight">Ready for a better workflow?</h2>
+            <p class="text-sm md:text-base text-zinc-400 mb-8 max-w-xl mx-auto">Join the private beta today and experience the ultimate browser companion for AI power users.</p>
+            <button onclick="openBetaModal()" class="w-full md:w-auto px-6 py-3.5 bg-emerald-500 text-black rounded-full text-base font-bold button-glow active:scale-95 hover:bg-emerald-400">
+                Add NEAT to Chrome — Free Private Beta
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-[#09090b] border-t border-white/5 px-6">
+        <div class="container mx-auto flex flex-col md:flex-row items-center justify-between gap-6 max-w-4xl">
+            <div class="flex items-center">
+                <svg id="neat-logo-full-footer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 212.142 83.375" class="h-5 text-zinc-600">
+                    <g id="neat-logo-elements-footer">
+                        <path d="M196.906,14.221l2.8,22.344c.142,1.132.955,2.066,2.056,2.362l9.559,2.574c1.095.295,1.095,1.848,0,2.142l-9.82,2.644c-.966.26-1.721,1.015-1.981,1.981l-2.644,9.82c-.295,1.095-1.848,1.095-2.142,0l-2.644-9.82c-.26-.966-1.015-1.721-1.981-1.981l-9.82-2.644c-1.095-.295-1.095-1.848,0-2.142l9.559-2.574c1.102-.297,1.914-1.23,2.056-2.362l2.8-22.344c.162-1.295,2.039-1.295,2.201,0Z" fill="#10B981" />
+                        <g fill="currentColor">
+                            <path d="M11.593,21.236v38.739h-5.976V11.947h6.12l27.65,37.947V11.947h5.977v48.028h-5.76L11.593,21.236Z" />
+                            <path d="M56.592,11.947h31.466v5.329h-25.49v15.481h24.986v5.328h-24.986v16.562h25.49v5.329h-31.466V11.947Z" />
+                            <path d="M127.801,49.319h-24.338l-4.249,10.657h-6.625l19.298-48.028h7.417l19.37,48.028h-6.624l-4.249-10.657ZM105.191,43.99h20.81l-10.369-26.714-10.441,26.714Z" />
+                            <path d="M151.992,17.276h-15.192v-5.329h36.435v5.329h-15.266v42.7h-5.977V17.276Z" />
+                        </g>
+                    </g>
+                </svg>
+            </div>
+            <div class="flex gap-6 text-[11px] font-semibold tracking-wider text-zinc-600 uppercase">
                 <span>© 2026 NEAT LABS</span>
-                <a href="#" class="hover:text-white transition-colors">Privacy</a>
-                <a href="#" class="hover:text-white transition-colors">Terms</a>
-                <a href="#" class="hover:text-white transition-colors">Support</a>
+                <a href="#" class="hover:text-zinc-400 transition-colors">Privacy</a>
+                <a href="#" class="hover:text-zinc-400 transition-colors">Terms</a>
+                <a href="#" class="hover:text-zinc-400 transition-colors">Support</a>
             </div>
         </div>
     </footer>
 
-    <!-- IntersectionObserver and Parallax Script -->
     <!-- Elite Beta Alert Modal -->
-    <div id="beta-modal" class="fixed inset-0 z-[100] flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-500">
-        <div class="absolute inset-0 bg-black/80 backdrop-blur-md" onclick="closeBetaModal()"></div>
-        <div id="beta-modal-content" class="relative bg-[#09090b] border border-white/10 rounded-[3rem] p-12 md:p-20 max-w-3xl w-full mx-6 transform scale-95 transition-all duration-500 shadow-[0_0_100px_rgba(251,146,60,0.1)] flex flex-col">
+    <div id="beta-modal" class="fixed inset-0 z-[100] flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeBetaModal()"></div>
+        <div id="beta-modal-content" class="relative bg-[#09090b] border border-white/10 rounded-xl p-8 md:p-10 max-w-md w-full mx-6 transform scale-95 transition-all duration-300 shadow-2xl flex flex-col">
             <!-- Close Button -->
-            <button onclick="closeBetaModal()" class="absolute top-8 right-8 text-zinc-500 hover:text-white transition-colors bg-white/5 p-3 rounded-full hover:bg-white/10">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+            <button onclick="closeBetaModal()" class="absolute top-4 right-4 text-zinc-500 hover:text-white transition-colors bg-white/5 p-2 rounded-full hover:bg-white/10">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
             </button>
             
-            <div class="text-left mt-4">
-                <h3 class="text-4xl md:text-5xl font-black text-white mb-6 tracking-tighter uppercase italic">NEAT is currently in private beta</h3>
-                <p class="text-xl text-zinc-400 font-medium mb-12 leading-relaxed">We’re currently in a private beta with a small group of power users. Join the waitlist below and you’ll be among the very first to get full access when we launch publicly in the next 1–2 weeks.</p>
+            <div class="text-left mt-2">
+                <h3 class="text-xl font-bold text-white mb-2">Private Beta Access</h3>
+                <p class="text-sm text-zinc-400 mb-6 leading-relaxed">Join the waitlist to be among the first to get full access when we launch publicly.</p>
                 
-                <form action="https://buttondown.com/api/emails/embed-subscribe/kademeta" method="post" class="embeddable-buttondown-form w-full">
-                    <div class="flex flex-col gap-6">
+                <form action="https://buttondown.com/api/emails/embed-subscribe/kademeta" method="post" class="w-full">
+                    <div class="flex flex-col gap-4">
                         <label for="modal-bd-email" class="sr-only">Enter your email</label>
-                        <input type="email" name="email" id="modal-bd-email" placeholder="you@email.com" required class="w-full bg-black/50 border border-white/10 rounded-2xl px-8 py-6 text-xl md:text-2xl font-medium outline-none placeholder:text-zinc-700 text-white focus:border-orange-400/50 transition-colors">
+                        <input type="email" name="email" id="modal-bd-email" placeholder="you@email.com" required class="w-full bg-black/50 border border-white/10 rounded-full px-4 py-3 text-sm outline-none placeholder:text-zinc-600 text-white focus:border-emerald-500/50 transition-colors">
                         
-                        <div class="flex flex-col md:flex-row items-center gap-4 mt-2">
-                            <input type="submit" value="Join the Waitlist" class="w-full md:flex-1 py-6 bg-orange-400 text-black rounded-2xl text-xl font-black hover:bg-[#fb923c] transition-all active:scale-95 cursor-pointer shadow-[0_0_30px_rgba(251,146,60,0.2)] hover:shadow-[0_0_40px_rgba(251,146,60,0.4)]">
-                            <button type="button" onclick="closeBetaModal()" class="w-full md:w-auto px-12 py-6 bg-white/5 text-white rounded-2xl text-xl font-bold hover:bg-white/10 transition-colors active:scale-95">
-                                Maybe later
-                            </button>
+                        <div class="flex items-center gap-3 mt-2">
+                            <input type="submit" value="Join Waitlist" class="flex-1 py-3 bg-emerald-500 text-black rounded-full text-sm font-bold hover:bg-emerald-400 transition-colors cursor-pointer shadow-sm">
                         </div>
-                        <p class="text-center text-zinc-600 text-xs font-medium mt-4">
-                            <a href="https://buttondown.com/refer/kademeta" target="_blank" class="text-zinc-700 hover:text-zinc-500 transition-colors inline-block">
-                                Powered by Buttondown.
+                        <p class="text-center text-zinc-600 text-[10px] mt-2">
+                            <a href="https://buttondown.com/refer/kademeta" target="_blank" class="hover:text-zinc-400 transition-colors">
+                                Powered by Buttondown
                             </a>
                         </p>
                     </div>
@@ -446,48 +470,19 @@
             betaModalContent.classList.add('scale-95');
         }
 
-        // Reveal Logic
+        // Lightweight Scroll Reveal Logic
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    requestAnimationFrame(() => {
-                        entry.target.classList.add('active');
-                    });
+                    entry.target.classList.add('active');
                     observer.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.15 });
+        }, { threshold: 0.1 });
 
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-        // Smooth & Performant Parallax
-        let ticking = false;
-
-        function updateParallax() {
-            const panels = document.querySelectorAll('.parallax-panel');
-            panels.forEach(panel => {
-                const rect = panel.getBoundingClientRect();
-                if (rect.top < window.innerHeight && rect.bottom > 0) {
-                    const scrollPercent = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
-                    const normalized = (scrollPercent - 0.5) * 2;
-                    
-                    const yOffset = normalized * -110;
-                    const rotateX = normalized * 10;
-                    
-                    panel.style.transform = `translate3d(0, ${yOffset}px, 0) rotateX(${rotateX}deg)`;
-                }
-            });
-            ticking = false;
-        }
-
-        window.addEventListener('scroll', () => {
-            if (!ticking) {
-                requestAnimationFrame(updateParallax);
-                ticking = true;
-            }
-        }, { passive: true });
-
-        // Reliable Video Pause (1.2 seconds)
+        // Reliable Video Pause
         const video = document.getElementById('workflow-video');
         if (video) {
             video.addEventListener('ended', () => {
