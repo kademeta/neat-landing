@@ -23,12 +23,12 @@
         "price": "0",
         "priceCurrency": "USD"
       },
-      "description": "The privacy-first browser companion that redacts sensitive data and compresses prompts in real-time. Processed 100% locally.",
+      "description": "NEAT is a privacy-first Chrome extension that redacts PII and compresses prompts in real-time. Save tokens and protect your data with 100% local processing on ChatGPT, Claude, and Grok.",
       "featureList": [
-        "100% Local Processing",
-        "Real-Time Insights & Analytics",
-        "One-Click Recovery",
-        "Cross-Platform Ready (ChatGPT, Claude, Grok)"
+        "100% Local PII Redaction Chrome Extension",
+        "Real-Time AI Prompt Compression & Token Savings",
+        "Local Prompt Optimizer with One-Click Recovery",
+        "Cross-Platform Support (ChatGPT, Claude, Grok)"
       ]
     }
     </script>
@@ -42,7 +42,7 @@
           "name": "Is my data sent to your servers?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "No. NEAT operates entirely on your local machine. We do not track, store, or transmit your prompts or personal data."
+            "text": "No. NEAT is a privacy-first AI tool that operates 100% locally. We do not track, store, or transmit your prompts or personal data; all processing stays securely in your browser."
           }
         },
         {
@@ -50,32 +50,90 @@
           "name": "Which AI platforms are supported?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "NEAT currently integrates seamlessly with the web interfaces of ChatGPT, Claude, and Grok."
+            "text": "NEAT is designed as a cross-platform token saving Chrome extension that integrates seamlessly with the web interfaces of ChatGPT, Claude, and Grok."
           }
         },
         {
           "@type": "Question",
-          "name": "How much can Vibe Mode really save?",
+          "name": "How does the AI prompt compression work?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Depending on the verbosity of the original text, power users frequently see prompt lengths reduced by 30–50% without losing critical context."
+            "text": "NEAT's AI prompt compression uses a local compression engine that intelligently strips conversational fluff, redundant phrases, and formatting from your prompt, preserving the core semantic meaning while reducing prompt length by 30-50%."
           }
         },
         {
           "@type": "Question",
-          "name": "What happens if PII Shield makes an error?",
+          "name": "Is the PII redaction Chrome extension secure for enterprise use?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "You retain full control. Our One-Click Recovery feature allows you to instantly revert any redaction or compression back to its original state."
+            "text": "Yes, absolutely. Because NEAT acts as a local prompt optimizer, it automatically redacts sensitive data (emails, keys, credentials, PII) client-side before submission. Your data is never sent to third-party endpoints."
           }
+        },
+        {
+          "@type": "Question",
+          "name": "How much can I save on AI tokens with Vibe Mode?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Depending on original text verbosity, users frequently reduce prompts by 30–50% using our AI prompt compression, making it an essential token saving Chrome extension for daily power users."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What happens if the local prompt optimizer redacts the wrong text?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You are in full control. Our One-Click Recovery feature allows you to instantly inspect and revert any redacted or compressed word back to its original state before sending."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is a subscription required to use the privacy-first AI tool?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. NEAT is a free-to-use, local-first browser companion built to elevate the privacy, speed, and efficiency of power users on popular generative AI interfaces."
+          }
+        }
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "How to Use NEAT for AI Prompt Compression and PII Redaction",
+      "description": "Learn how to optimize your AI prompts, protect sensitive data, and save tokens locally using the NEAT Chrome extension.",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "name": "Install the NEAT Extension",
+          "text": "Install NEAT to embed a lightweight control pill directly into ChatGPT, Claude, and Grok web interfaces.",
+          "url": "https://getneat.io/#how"
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Redact Sensitive PII",
+          "text": "NEAT's local PII redaction engine automatically scans and masks sensitive data like emails, API keys, and names before they leave your browser.",
+          "url": "https://getneat.io/#how"
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Compress Prompts with Vibe Mode",
+          "text": "Enable Vibe Mode to compress your prompt by 30-50% by removing natural language fillers, significantly saving AI context tokens.",
+          "url": "https://getneat.io/#how"
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Inject Reusable Snippets",
+          "text": "Build a library of prompt templates and inject them instantly using shortcuts to speed up your daily workflows.",
+          "url": "https://getneat.io/#how"
         }
       ]
     }
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEAT | Your prompts. Cleaner. Safer. Faster.</title>
-    <meta name="description" content="The privacy-first browser companion that redacts sensitive data and compresses prompts in real-time. Processed 100% locally.">
+    <title>NEAT — AI Prompt Compression & PII Redaction for ChatGPT, Claude & Grok</title>
+    <meta name="description" content="NEAT is a privacy-first Chrome extension that redacts PII and compresses prompts in real-time. Save tokens and protect your data with 100% local processing on ChatGPT, Claude, and Grok.">
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
     
     <!-- Tailwind CSS -->
@@ -417,11 +475,11 @@
             </div>
             
             <h1 class="text-4xl md:text-6xl font-black tracking-tight mb-6 leading-tight text-gradient">
-                Your prompts.<br>Cleaner. Safer. Faster.
+                Compress AI Prompts & Redact PII Locally — Instantly
             </h1>
             
             <p class="text-base md:text-lg text-zinc-400 mb-10 font-medium leading-relaxed max-w-xl mx-auto">
-                The privacy-first browser companion that redacts sensitive data and compresses prompts in real-time. Processed 100% locally.
+                NEAT is the ultimate privacy-first Chrome extension for AI power users. It automatically compresses your prompts and redacts PII in real-time, keeping all data 100% local and secure on ChatGPT, Claude, and Grok.
             </p>
 
             <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -432,7 +490,7 @@
             
             <!-- Hero Mockup Insert -->
             <div class="mt-16 relative max-w-md mx-auto rounded-2xl overflow-hidden shadow-2xl border border-white/10 p-1 bg-[#111113]">
-                 <img src="assets/hero-dashboard.png" alt="NEAT Dashboard" class="w-full rounded-xl sharpen opacity-95 hover:opacity-100 transition-opacity">
+                 <img src="assets/hero-dashboard.png" alt="NEAT Chrome Extension - AI Prompt Compression & PII Redaction Interface" class="w-full rounded-xl sharpen opacity-95 hover:opacity-100 transition-opacity">
             </div>
         </div>
     </section>
@@ -441,8 +499,11 @@
     <section id="how" class="py-24 bg-[#0d0d12] px-6">
         <div class="container mx-auto max-w-6xl">
             <div class="text-center mb-20 reveal">
-                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">How does NEAT work?</h2>
-                <div class="h-1 w-12 bg-emerald-500 mx-auto rounded-full"></div>
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">How does NEAT work as a local prompt optimizer?</h2>
+                <div class="h-1 w-12 bg-emerald-500 mx-auto rounded-full mb-4"></div>
+                <p class="text-zinc-400 text-sm md:text-base max-w-xl mx-auto leading-relaxed">
+                    NEAT sits directly inside ChatGPT, Claude, and Grok to automatically optimize your workflow. It secures your personal data and compresses prompt size client-side in real-time.
+                </p>
             </div>
 
             <div class="space-y-24">
@@ -454,7 +515,7 @@
                         <p class="text-sm md:text-base text-zinc-400 leading-relaxed">NEAT embeds a lightweight, unobtrusive control pill directly into ChatGPT, Claude, and Grok. No new apps to learn, just instant access to powerful prompt tools right where you need them.</p>
                     </div>
                     <div class="order-1 md:order-2 bg-[#111113] aspect-video rounded-xl border border-white/5 flex items-center justify-center p-2 shadow-lg">
-                         <img src="assets/workflow-01-unified-control.png" alt="Unified Toolbar" class="w-full h-full object-cover sharpen rounded-md border border-white/5">
+                         <img src="assets/workflow-01-unified-control.png" alt="NEAT Chrome Extension Unified Toolbar for AI prompt compression" class="w-full h-full object-cover sharpen rounded-md border border-white/5">
                     </div>
                 </div>
 
@@ -494,7 +555,7 @@
                 <!-- Step 4 -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center reveal">
                     <div class="bg-[#111113] aspect-video rounded-xl border border-white/5 flex items-center justify-center p-2 shadow-lg">
-                        <img src="assets/workflow-03-privacy-recovery.png" alt="Context Injectors" class="w-full h-full object-cover sharpen rounded-md border border-white/5">
+                        <img src="assets/workflow-03-privacy-recovery.png" alt="NEAT Context Injector panel for local prompt optimization" class="w-full h-full object-cover sharpen rounded-md border border-white/5">
                     </div>
                     <div class="space-y-4 text-center md:text-left">
                         <div class="text-emerald-500 font-bold text-xs uppercase tracking-widest">04 / Speed</div>
@@ -516,8 +577,10 @@
     <section id="features" class="py-24 bg-[#09090b] px-6">
         <div class="container mx-auto max-w-5xl">
             <div class="text-center mb-16 reveal">
-                <h2 class="text-3xl font-bold tracking-tight text-white mb-3">What are NEAT's core capabilities?</h2>
-                <p class="text-zinc-400 text-sm md:text-base">Everything you need for elite prompt engineering.</p>
+                <h2 class="text-3xl font-bold tracking-tight text-white mb-3">What makes NEAT the best AI prompt compression tool?</h2>
+                <p class="text-zinc-400 text-sm md:text-base max-w-2xl mx-auto leading-relaxed">
+                    NEAT is the ultimate local prompt optimizer. It provides 100% local PII redaction, real-time context token insights, and seamless 30-50% AI prompt compression right inside your browser.
+                </p>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -525,28 +588,28 @@
                     <div class="mb-4 w-10 h-10 bg-emerald-500/10 rounded-full flex items-center justify-center text-emerald-500">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                     </div>
-                    <h4 class="text-lg font-bold mb-2 text-white">100% Local Processing</h4>
+                    <h3 class="text-lg font-bold mb-2 text-white">100% Local Processing</h3>
                     <p class="text-sm text-zinc-400 leading-relaxed">Your data never leaves your machine. Every redaction, compression, and injection happens entirely within your browser.</p>
                 </div>
                 <div class="p-6 rounded-xl bg-[#111113] border border-white/5 hover:border-emerald-500/30 transition-colors reveal">
                     <div class="mb-4 w-10 h-10 bg-emerald-500/10 rounded-full flex items-center justify-center text-emerald-500">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
                     </div>
-                    <h4 class="text-lg font-bold mb-2 text-white">Real-Time Insights</h4>
+                    <h3 class="text-lg font-bold mb-2 text-white">Real-Time Insights</h3>
                     <p class="text-sm text-zinc-400 leading-relaxed">Track exactly how many tokens—and how much money—you’re saving with our beautiful, built-in analytics dashboard.</p>
                 </div>
                 <div class="p-6 rounded-xl bg-[#111113] border border-white/5 hover:border-emerald-500/30 transition-colors reveal">
                     <div class="mb-4 w-10 h-10 bg-emerald-500/10 rounded-full flex items-center justify-center text-emerald-500">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
                     </div>
-                    <h4 class="text-lg font-bold mb-2 text-white">One-Click Recovery</h4>
+                    <h3 class="text-lg font-bold mb-2 text-white">One-Click Recovery</h3>
                     <p class="text-sm text-zinc-400 leading-relaxed">Made a mistake? A single click instantly restores your original, uncompressed prompt text.</p>
                 </div>
                 <div class="p-6 rounded-xl bg-[#111113] border border-white/5 hover:border-emerald-500/30 transition-colors reveal">
                     <div class="mb-4 w-10 h-10 bg-emerald-500/10 rounded-full flex items-center justify-center text-emerald-500">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><line x1="3" x2="21" y1="9" y2="9"/><line x1="9" x2="9" y1="21" y2="9"/></svg>
                     </div>
-                    <h4 class="text-lg font-bold mb-2 text-white">Cross-Platform Ready</h4>
+                    <h3 class="text-lg font-bold mb-2 text-white">Cross-Platform Ready</h3>
                     <p class="text-sm text-zinc-400 leading-relaxed">Engineered to work flawlessly across the leading AI platforms: ChatGPT, Claude, and Grok.</p>
                 </div>
             </div>
@@ -557,8 +620,10 @@
     <section id="showcase" class="py-24 bg-[#0d0d12] px-6 border-y border-white/5">
         <div class="container mx-auto max-w-5xl reveal">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-white mb-3">Why is NEAT built for power users?</h2>
-                <p class="text-sm md:text-base text-zinc-400 max-w-xl mx-auto">Demand efficiency and privacy without compromising your workflow. See the tangible impact on your token usage from day one.</p>
+                <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-white mb-3">Why is NEAT the preferred local prompt optimizer for power users?</h2>
+                <p class="text-sm md:text-base text-zinc-400 max-w-2xl mx-auto leading-relaxed">
+                    NEAT is built for AI power users demanding ultimate efficiency and absolute data privacy. It delivers an interactive bento dashboard to monitor real-time token savings and custom context snippets.
+                </p>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto items-start">
@@ -568,22 +633,22 @@
                     <!-- Card 1: Insights Dashboard -->
                     <div class="bento-card p-6 flex flex-col group">
                         <div class="mb-4">
-                            <h4 class="text-lg font-bold text-white">Performance Insights</h4>
+                            <h3 class="text-lg font-bold text-white">Performance Insights</h3>
                             <p class="text-sm text-zinc-500">Track tokens and cost savings in real-time.</p>
                         </div>
                         <div class="rounded-xl overflow-hidden border border-white/5 bg-black/50 flex-1 flex items-center justify-center p-2">
-                            <img src="assets/hero-dashboard.png" alt="Insights Dashboard" class="w-full object-contain sharpen rounded-lg shadow-md opacity-90 group-hover:opacity-100 transition-opacity">
+                            <img src="assets/hero-dashboard.png" alt="NEAT real-time AI token savings dashboard" class="w-full object-contain sharpen rounded-lg shadow-md opacity-90 group-hover:opacity-100 transition-opacity">
                         </div>
                     </div>
                     
                     <!-- Card 3: Vibe Active -->
                     <div class="bento-card p-6 flex flex-col group">
                         <div class="mb-4">
-                            <h4 class="text-lg font-bold text-white">Vibe Mode Active</h4>
+                            <h3 class="text-lg font-bold text-white">Vibe Mode Active</h3>
                             <p class="text-sm text-zinc-500">Intelligent compression in action.</p>
                         </div>
                         <div class="rounded-xl overflow-hidden border border-white/5 bg-black/50 flex-1 flex items-center justify-center p-2">
-                            <img src="assets/workflow-01-unified-control.png" alt="Vibe Toolbar" class="w-full object-contain sharpen rounded-lg shadow-md opacity-90 group-hover:opacity-100 transition-opacity">
+                            <img src="assets/workflow-01-unified-control.png" alt="NEAT prompt compression Vibe Mode toolbar" class="w-full object-contain sharpen rounded-lg shadow-md opacity-90 group-hover:opacity-100 transition-opacity">
                         </div>
                     </div>
                 </div>
@@ -593,22 +658,22 @@
                     <!-- Card 2: Settings (Vertical Bento) -->
                     <div class="bento-card p-6 flex flex-col group">
                         <div class="mb-4">
-                            <h4 class="text-lg font-bold text-white">Granular Control</h4>
+                            <h3 class="text-lg font-bold text-white">Granular Control</h3>
                             <p class="text-sm text-zinc-500">Manage compression and privacy shields.</p>
                         </div>
                         <div class="rounded-xl overflow-hidden border border-white/5 bg-black/50 flex-1 flex items-center justify-center p-2">
-                            <img src="assets/screenshot-settings-vertical.png" alt="Settings" class="w-full object-contain sharpen rounded-lg shadow-md opacity-90 group-hover:opacity-100 transition-opacity">
+                            <img src="assets/screenshot-settings-vertical.png" alt="NEAT local PII redaction settings toolbar" class="w-full object-contain sharpen rounded-lg shadow-md opacity-90 group-hover:opacity-100 transition-opacity">
                         </div>
                     </div>
 
                     <!-- Card 4: Context Injectors -->
                     <div class="bento-card p-6 flex flex-col group">
                         <div class="mb-4">
-                            <h4 class="text-lg font-bold text-white">Context Tags</h4>
+                            <h3 class="text-lg font-bold text-white">Context Tags</h3>
                             <p class="text-sm text-zinc-500">Inject massive prompts instantly.</p>
                         </div>
                         <div class="rounded-xl overflow-hidden border border-white/5 bg-black/50 flex-1 flex items-center justify-center p-2">
-                            <img src="assets/workflow-03-privacy-recovery.png" alt="Context Tags" class="w-full object-contain sharpen rounded-lg shadow-md opacity-90 group-hover:opacity-100 transition-opacity">
+                            <img src="assets/workflow-03-privacy-recovery.png" alt="NEAT local context snippet library" class="w-full object-contain sharpen rounded-lg shadow-md opacity-90 group-hover:opacity-100 transition-opacity">
                         </div>
                     </div>
                 </div>
@@ -629,27 +694,45 @@
             <h2 class="text-2xl md:text-3xl font-bold text-white mb-12 text-center tracking-tight">Frequently Asked Questions</h2>
             <div class="space-y-6">
                 <div class="reveal border-b border-white/5 pb-6" itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
-                    <h4 class="text-base font-bold text-white mb-2" itemprop="name">Is my data sent to your servers?</h4>
+                    <h3 class="text-base font-bold text-white mb-2" itemprop="name">Is my data sent to your servers?</h3>
                     <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
-                        <p class="text-sm text-zinc-400 leading-relaxed" itemprop="text">No. NEAT operates entirely on your local machine. We do not track, store, or transmit your prompts or personal data.</p>
+                        <p class="text-sm text-zinc-400 leading-relaxed" itemprop="text">No. NEAT is a privacy-first AI tool that operates 100% locally. We do not track, store, or transmit your prompts or personal data; all processing stays securely in your browser.</p>
                     </div>
                 </div>
                 <div class="reveal border-b border-white/5 pb-6" itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
-                    <h4 class="text-base font-bold text-white mb-2" itemprop="name">Which AI platforms are supported?</h4>
+                    <h3 class="text-base font-bold text-white mb-2" itemprop="name">Which AI platforms are supported?</h3>
                     <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
-                        <p class="text-sm text-zinc-400 leading-relaxed" itemprop="text">NEAT currently integrates seamlessly with the web interfaces of ChatGPT, Claude, and Grok.</p>
+                        <p class="text-sm text-zinc-400 leading-relaxed" itemprop="text">NEAT is designed as a cross-platform token saving Chrome extension that integrates seamlessly with the web interfaces of ChatGPT, Claude, and Grok.</p>
                     </div>
                 </div>
                 <div class="reveal border-b border-white/5 pb-6" itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
-                    <h4 class="text-base font-bold text-white mb-2" itemprop="name">How much can Vibe Mode really save?</h4>
+                    <h3 class="text-base font-bold text-white mb-2" itemprop="name">How does the AI prompt compression work?</h3>
                     <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
-                        <p class="text-sm text-zinc-400 leading-relaxed" itemprop="text">Depending on the verbosity of the original text, power users frequently see prompt lengths reduced by 30–50% without losing critical context.</p>
+                        <p class="text-sm text-zinc-400 leading-relaxed" itemprop="text">NEAT's AI prompt compression uses a local compression engine that intelligently strips conversational fluff, redundant phrases, and formatting from your prompt, preserving the core semantic meaning while reducing prompt length by 30-50%.</p>
+                    </div>
+                </div>
+                <div class="reveal border-b border-white/5 pb-6" itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
+                    <h3 class="text-base font-bold text-white mb-2" itemprop="name">Is the PII redaction Chrome extension secure for enterprise use?</h3>
+                    <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+                        <p class="text-sm text-zinc-400 leading-relaxed" itemprop="text">Yes, absolutely. Because NEAT acts as a local prompt optimizer, it automatically redacts sensitive data (emails, keys, credentials, PII) client-side before submission. Your data is never sent to third-party endpoints.</p>
+                    </div>
+                </div>
+                <div class="reveal border-b border-white/5 pb-6" itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
+                    <h3 class="text-base font-bold text-white mb-2" itemprop="name">How much can I save on AI tokens with Vibe Mode?</h3>
+                    <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+                        <p class="text-sm text-zinc-400 leading-relaxed" itemprop="text">Depending on original text verbosity, users frequently reduce prompts by 30–50% using our AI prompt compression, making it an essential token saving Chrome extension for daily power users.</p>
+                    </div>
+                </div>
+                <div class="reveal border-b border-white/5 pb-6" itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
+                    <h3 class="text-base font-bold text-white mb-2" itemprop="name">What happens if the local prompt optimizer redacts the wrong text?</h3>
+                    <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+                        <p class="text-sm text-zinc-400 leading-relaxed" itemprop="text">You are in full control. Our One-Click Recovery feature allows you to instantly inspect and revert any redacted or compressed word back to its original state before sending.</p>
                     </div>
                 </div>
                 <div class="reveal pb-2" itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
-                    <h4 class="text-base font-bold text-white mb-2" itemprop="name">What happens if PII Shield makes an error?</h4>
+                    <h3 class="text-base font-bold text-white mb-2" itemprop="name">Is a subscription required to use the privacy-first AI tool?</h3>
                     <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
-                        <p class="text-sm text-zinc-400 leading-relaxed" itemprop="text">You retain full control. Our One-Click Recovery feature allows you to instantly revert any redaction or compression back to its original state.</p>
+                        <p class="text-sm text-zinc-400 leading-relaxed" itemprop="text">No. NEAT is a free-to-use, local-first browser companion built to elevate the privacy, speed, and efficiency of power users on popular generative AI interfaces.</p>
                     </div>
                 </div>
             </div>
