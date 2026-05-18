@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-KDM588NT');</script>
+    <!-- End Google Tag Manager -->
     <script defer src="/_vercel/insights/script.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,6 +32,69 @@
         ml('account', '2348980');
     </script>
     <!-- End MailerLite Universal -->
+    
+    <!-- Structured Data (Schemas) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "NEAT",
+      "operatingSystem": "Windows, macOS, Linux",
+      "applicationCategory": "BrowserApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "The privacy-first browser companion that redacts sensitive data and compresses prompts in real-time. Processed 100% locally.",
+      "featureList": [
+        "100% Local Processing",
+        "Real-Time Insights & Analytics",
+        "One-Click Recovery",
+        "Cross-Platform Ready (ChatGPT, Claude, Grok)"
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is my data sent to your servers?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. NEAT operates entirely on your local machine. We do not track, store, or transmit your prompts or personal data."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which AI platforms are supported?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "NEAT currently integrates seamlessly with the web interfaces of ChatGPT, Claude, and Grok."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much can Vibe Mode really save?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Depending on the verbosity of the original text, power users frequently see prompt lengths reduced by 30–50% without losing critical context."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What happens if PII Shield makes an error?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You retain full control. Our One-Click Recovery feature allows you to instantly revert any redaction or compression back to its original state."
+          }
+        }
+      ]
+    }
+    </script>
     
     <style>
         :root {
@@ -112,16 +182,197 @@
         .bento-card:hover {
             border-color: rgba(16, 185, 129, 0.2);
         }
+
+        /* Bulletproof premium button overrides for static page viewing */
+        .neat-cta-btn-container {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            justify-content: center !important;
+            gap: 20px !important; /* reliable gap between buttons */
+            width: 100% !important;
+            max-width: 450px !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+        }
+
+        @media (min-width: 640px) {
+            .neat-cta-btn-container {
+                flex-direction: row !important;
+                max-width: none !important;
+                gap: 24px !important; /* clean spacing, no touching! */
+            }
+        }
+
+        .neat-cta-btn-primary {
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            height: 56px !important;
+            padding-left: 40px !important;
+            padding-right: 40px !important;
+            background-color: #10B981 !important;
+            color: #09090b !important;
+            border-radius: 9999px !important;
+            font-size: 16px !important;
+            font-weight: 800 !important;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+            box-shadow: 0 0 30px rgba(16, 185, 129, 0.25) !important;
+            border: 1px solid transparent !important;
+            text-decoration: none !important;
+            cursor: pointer !important;
+            white-space: nowrap !important;
+        }
+
+        .neat-cta-btn-primary:hover {
+            background-color: #34d399 !important;
+            transform: translateY(-2px) !important;
+            box-shadow: 0 0 45px rgba(16, 185, 129, 0.45) !important;
+        }
+
+        .neat-cta-btn-primary:active {
+            transform: scale(0.95) translateY(0) !important;
+        }
+
+        .neat-cta-btn-secondary {
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            height: 56px !important;
+            padding-left: 40px !important;
+            padding-right: 40px !important;
+            background: rgba(16, 185, 129, 0.08) !important;
+            color: #10B981 !important;
+            border-radius: 9999px !important;
+            font-size: 16px !important;
+            font-weight: 700 !important;
+            border: 1px solid rgba(16, 185, 129, 0.25) !important;
+            backdrop-filter: blur(12px) !important;
+            -webkit-backdrop-filter: blur(12px) !important;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.06) !important;
+            text-decoration: none !important;
+            cursor: pointer !important;
+            gap: 12px !important;
+            white-space: nowrap !important;
+        }
+
+        .neat-cta-btn-secondary:hover {
+            background: rgba(16, 185, 129, 0.16) !important;
+            color: #34d399 !important;
+            border-color: rgba(16, 185, 129, 0.45) !important;
+            transform: translateY(-2px) !important;
+            box-shadow: 0 0 35px rgba(16, 185, 129, 0.18) !important;
+        }
+
+        .neat-cta-btn-secondary:active {
+            transform: scale(0.95) translateY(0) !important;
+        }
+
+        /* Bulletproof premium footer styling overrides */
+        .neat-footer-container {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            gap: 24px !important;
+            width: 100% !important;
+            max-width: 1000px !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+        }
+
+        @media (min-width: 768px) {
+            .neat-footer-container {
+                flex-direction: row !important;
+                align-items: center !important;
+                gap: 0px !important;
+            }
+        }
+
+        .neat-footer-logo-block {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            gap: 12px !important;
+        }
+
+        @media (min-width: 768px) {
+            .neat-footer-logo-block {
+                align-items: flex-start !important;
+            }
+        }
+
+        .neat-footer-logo {
+            height: 40px !important; /* exactly 2x original h-5 */
+            width: auto !important;
+            color: #71717a !important; /* zinc-500 */
+            transition: color 0.3s ease !important;
+        }
+
+        .neat-footer-logo:hover {
+            color: #ffffff !important;
+        }
+
+        .neat-footer-copyright {
+            font-size: 10px !important;
+            letter-spacing: 0.1em !important;
+            font-weight: 600 !important;
+            text-transform: uppercase !important;
+            color: #3f3f46 !important; /* zinc-600 */
+        }
+
+        .neat-footer-links {
+            display: flex !important;
+            flex-wrap: wrap !important;
+            align-items: center !important;
+            justify-content: center !important;
+            gap: 20px !important;
+            font-size: 11px !important;
+            font-weight: 600 !important;
+            letter-spacing: 0.1em !important;
+            text-transform: uppercase !important;
+        }
+
+        .neat-footer-link-item {
+            color: #71717a !important; /* zinc-500 */
+            transition: color 0.3s ease !important;
+            text-decoration: none !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            gap: 8px !important;
+        }
+
+        .neat-footer-link-item:hover {
+            color: #10B981 !important; /* brand teal on hover! */
+        }
+
+        .neat-footer-dot {
+            width: 6px !important;
+            height: 6px !important;
+            background-color: #27272a !important; /* zinc-800 */
+            border-radius: 9999px !important;
+            display: none !important;
+        }
+
+        @media (min-width: 640px) {
+            .neat-footer-dot {
+                display: inline-block !important;
+            }
+        }
     </style>
-</head>
 <body class="selection:bg-emerald-500/30 selection:text-white">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KDM588NT"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
 
     <!-- Navigation -->
     <nav class="fixed top-0 left-0 right-0 z-[100] flex items-center justify-between px-8 py-3.5 glass border-b border-white/5 max-w-[1100px] mt-6 mx-auto rounded-full w-[95%]">
         <div class="flex items-center">
             <!-- Simple clean logo text for the nav to keep it subtle, full logo is in hero -->
             <span class="text-white font-bold tracking-widest uppercase text-sm flex items-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 212.142 83.375" class="h-4">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 212.142 83.375" style="height: 24px !important; width: auto !important; display: block !important;">
                     <path d="M196.906,14.221l2.8,22.344c.142,1.132.955,2.066,2.056,2.362l9.559,2.574c1.095.295,1.095,1.848,0,2.142l-9.82,2.644c-.966.26-1.721,1.015-1.981,1.981l-2.644,9.82c-.295,1.095-1.848,1.095-2.142,0l-2.644-9.82c-.26-.966-1.015-1.721-1.981-1.981l-9.82-2.644c-1.095-.295-1.095-1.848,0-2.142l9.559-2.574c1.102-.297,1.914-1.23,2.056-2.362l2.8-22.344c.162-1.295,2.039-1.295,2.201,0Z" fill="#10B981" class="star-glow"/>
                     <g fill="currentColor">
                         <path d="M11.593,21.236v38.739h-5.976V11.947h6.12l27.65,37.947V11.947h5.977v48.028h-5.76L11.593,21.236Z" />
@@ -189,7 +440,7 @@
     <section id="how" class="py-24 bg-[#0d0d12] px-6">
         <div class="container mx-auto max-w-6xl">
             <div class="text-center mb-20 reveal">
-                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">How It Works</h2>
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">How does NEAT work?</h2>
                 <div class="h-1 w-12 bg-emerald-500 mx-auto rounded-full"></div>
             </div>
 
@@ -264,7 +515,7 @@
     <section id="features" class="py-24 bg-[#09090b] px-6">
         <div class="container mx-auto max-w-5xl">
             <div class="text-center mb-16 reveal">
-                <h2 class="text-3xl font-bold tracking-tight text-white mb-3">Core Capabilities</h2>
+                <h2 class="text-3xl font-bold tracking-tight text-white mb-3">What are NEAT's core capabilities?</h2>
                 <p class="text-zinc-400 text-sm md:text-base">Everything you need for elite prompt engineering.</p>
             </div>
             
@@ -305,7 +556,7 @@
     <section id="showcase" class="py-24 bg-[#0d0d12] px-6 border-y border-white/5">
         <div class="container mx-auto max-w-5xl reveal">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-white mb-3">Built for power users.</h2>
+                <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-white mb-3">Why is NEAT built for power users?</h2>
                 <p class="text-sm md:text-base text-zinc-400 max-w-xl mx-auto">Demand efficiency and privacy without compromising your workflow. See the tangible impact on your token usage from day one.</p>
             </div>
             
@@ -372,46 +623,74 @@
     </section>
 
     <!-- FAQ Section -->
-    <section id="faq" class="py-24 bg-[#09090b] px-6">
+    <section id="faq" class="py-24 bg-[#09090b] px-6" itemscope itemtype="https://schema.org/FAQPage">
         <div class="container mx-auto max-w-2xl">
-            <h2 class="text-2xl md:text-3xl font-bold text-white mb-12 text-center tracking-tight">Common Questions</h2>
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-12 text-center tracking-tight">Frequently Asked Questions</h2>
             <div class="space-y-6">
-                <div class="reveal border-b border-white/5 pb-6">
-                    <h4 class="text-base font-bold text-white mb-2">Is my data sent to your servers?</h4>
-                    <p class="text-sm text-zinc-400 leading-relaxed">No. NEAT operates entirely on your local machine. We do not track, store, or transmit your prompts or personal data.</p>
+                <div class="reveal border-b border-white/5 pb-6" itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
+                    <h4 class="text-base font-bold text-white mb-2" itemprop="name">Is my data sent to your servers?</h4>
+                    <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+                        <p class="text-sm text-zinc-400 leading-relaxed" itemprop="text">No. NEAT operates entirely on your local machine. We do not track, store, or transmit your prompts or personal data.</p>
+                    </div>
                 </div>
-                <div class="reveal border-b border-white/5 pb-6">
-                    <h4 class="text-base font-bold text-white mb-2">Which AI platforms are supported?</h4>
-                    <p class="text-sm text-zinc-400 leading-relaxed">NEAT currently integrates seamlessly with the web interfaces of ChatGPT, Claude, and Grok.</p>
+                <div class="reveal border-b border-white/5 pb-6" itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
+                    <h4 class="text-base font-bold text-white mb-2" itemprop="name">Which AI platforms are supported?</h4>
+                    <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+                        <p class="text-sm text-zinc-400 leading-relaxed" itemprop="text">NEAT currently integrates seamlessly with the web interfaces of ChatGPT, Claude, and Grok.</p>
+                    </div>
                 </div>
-                <div class="reveal border-b border-white/5 pb-6">
-                    <h4 class="text-base font-bold text-white mb-2">How much can Vibe Mode really save?</h4>
-                    <p class="text-sm text-zinc-400 leading-relaxed">Depending on the verbosity of the original text, power users frequently see prompt lengths reduced by 30–50% without losing critical context.</p>
+                <div class="reveal border-b border-white/5 pb-6" itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
+                    <h4 class="text-base font-bold text-white mb-2" itemprop="name">How much can Vibe Mode really save?</h4>
+                    <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+                        <p class="text-sm text-zinc-400 leading-relaxed" itemprop="text">Depending on the verbosity of the original text, power users frequently see prompt lengths reduced by 30–50% without losing critical context.</p>
+                    </div>
                 </div>
-                <div class="reveal pb-2">
-                    <h4 class="text-base font-bold text-white mb-2">What happens if PII Shield makes an error?</h4>
-                    <p class="text-sm text-zinc-400 leading-relaxed">You retain full control. Our One-Click Recovery feature allows you to instantly revert any redaction or compression back to its original state.</p>
+                <div class="reveal pb-2" itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
+                    <h4 class="text-base font-bold text-white mb-2" itemprop="name">What happens if PII Shield makes an error?</h4>
+                    <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+                        <p class="text-sm text-zinc-400 leading-relaxed" itemprop="text">You retain full control. Our One-Click Recovery feature allows you to instantly revert any redaction or compression back to its original state.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Final CTA Section -->
-    <section class="py-32 bg-[#0d0d12] text-center relative overflow-hidden px-6 border-t border-white/5">
-        <div class="container mx-auto relative z-10 reveal active">
-            <h2 class="text-3xl md:text-5xl font-black text-white mb-4 tracking-tight">Ready for a better workflow?</h2>
-            <p class="text-sm md:text-base text-zinc-400 mb-8 max-w-xl mx-auto">Join the private beta today and experience the ultimate browser companion for AI power users.</p>
-            <button onclick="openBetaModal()" class="w-full md:w-auto px-6 py-3.5 bg-emerald-500 text-black rounded-full text-base font-bold button-glow active:scale-95 hover:bg-emerald-400">
-                Join Early Access
-            </button>
+    <section class="py-36 bg-[#09090b] relative overflow-hidden px-6">
+        <!-- Multi-Layered Premium Brand Glows -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-emerald-500/[0.08] rounded-full blur-[140px] pointer-events-none"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[450px] h-[225px] bg-emerald-400/[0.04] rounded-full blur-[100px] pointer-events-none"></div>
+
+        <div class="container mx-auto max-w-4xl relative z-10 reveal active text-center">
+            <h2 class="text-4xl md:text-6xl font-black tracking-tight text-white mb-6 leading-tight max-w-2xl mx-auto">
+                Ready for a better workflow?
+            </h2>
+            <p class="text-base md:text-lg text-zinc-400 mb-12 max-w-xl mx-auto leading-relaxed font-medium">
+                Join the private beta today and experience the ultimate browser companion for AI power users. Redact data, optimize tokens, and script context, all processed 100% locally.
+            </p>
+
+            <!-- Spacing, Alignment, Button Sizing, & Hierarchy -->
+            <div class="neat-cta-btn-container">
+                <!-- Primary CTA -->
+                <button onclick="openBetaModal()" class="neat-cta-btn-primary">
+                    Join Early Access
+                </button>
+                <!-- Secondary CTA: Premium Brand Teal Glassmorphism -->
+                <a href="https://discord.gg/eGRb3dXtmG" target="_blank" rel="noopener noreferrer" class="group neat-cta-btn-secondary">
+                    <svg style="width: 20px !important; height: 20px !important; fill: #ffffff !important; transition: transform 0.3s;" class="group-hover:scale-110" viewBox="0 0 127.14 96.36" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M107.7,8.07A105.15,105.15,0,0,0,77.26,0a77.19,77.19,0,0,0-3.3,6.83A96.67,96.67,0,0,0,53.22,6.83,77.19,77.19,0,0,0,49.88,0,105.15,105.15,0,0,0,19.44,8.07C3.66,31.58-1.86,54.65,1,77.53A105.73,105.73,0,0,0,32,96.36a77.7,77.7,0,0,0,6.63-10.85,68.43,68.43,0,0,1-10.4-5c.87-.64,1.71-1.32,2.51-2a75.52,75.52,0,0,0,72.72,0c.8,0.68,1.64,1.36,2.51,2a68.43,68.43,0,0,1-10.4,5,77.7,77.7,0,0,0,6.63,10.85,105.73,105.73,0,0,0,31-18.83C129.07,48.74,122.58,25.92,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53S36.18,40.36,42.45,40.36,53.83,46,53.83,53,48.72,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.24,60,73.24,53S78.41,40.36,84.69,40.36,96.07,46,96.07,53,91,65.69,84.69,65.69Z"/>
+                    </svg>
+                    <span>Join the Community</span>
+                </a>
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="py-12 bg-[#09090b] border-t border-white/5 px-6">
-        <div class="container mx-auto flex flex-col md:flex-row items-center justify-between gap-6 max-w-4xl">
-            <div class="flex items-center">
-                <svg id="neat-logo-full-footer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 212.142 83.375" class="h-5 text-zinc-600">
+        <div class="neat-footer-container">
+            <div class="neat-footer-logo-block">
+                <svg id="neat-logo-full-footer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 212.142 83.375" class="neat-footer-logo">
                     <g id="neat-logo-elements-footer">
                         <path d="M196.906,14.221l2.8,22.344c.142,1.132.955,2.066,2.056,2.362l9.559,2.574c1.095.295,1.095,1.848,0,2.142l-9.82,2.644c-.966.26-1.721,1.015-1.981,1.981l-2.644,9.82c-.295,1.095-1.848,1.095-2.142,0l-2.644-9.82c-.26-.966-1.015-1.721-1.981-1.981l-9.82-2.644c-1.095-.295-1.095-1.848,0-2.142l9.559-2.574c1.102-.297,1.914-1.23,2.056-2.362l2.8-22.344c.162-1.295,2.039-1.295,2.201,0Z" fill="#10B981" />
                         <g fill="currentColor">
@@ -422,12 +701,21 @@
                         </g>
                     </g>
                 </svg>
+                <span class="neat-footer-copyright">© 2026 NEAT LABS</span>
             </div>
-            <div class="flex gap-6 text-[11px] font-semibold tracking-wider text-zinc-600 uppercase">
-                <span>© 2026 NEAT LABS</span>
-                <a href="privacy/index.html" class="hover:text-zinc-400 transition-colors">Privacy</a>
-                <a href="#" class="hover:text-zinc-400 transition-colors">Terms</a>
-                <a href="#" class="hover:text-zinc-400 transition-colors">Support</a>
+            <div class="neat-footer-links">
+                <a href="https://discord.gg/eGRb3dXtmG" target="_blank" rel="noopener noreferrer" class="neat-footer-link-item">
+                    <svg style="width: 14px !important; height: 14px !important; fill: currentColor !important; display: inline-block !important; vertical-align: middle !important;" viewBox="0 0 127.14 96.36" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M107.7,8.07A105.15,105.15,0,0,0,77.26,0a77.19,77.19,0,0,0-3.3,6.83A96.67,96.67,0,0,0,53.22,6.83,77.19,77.19,0,0,0,49.88,0,105.15,105.15,0,0,0,19.44,8.07C3.66,31.58-1.86,54.65,1,77.53A105.73,105.73,0,0,0,32,96.36a77.7,77.7,0,0,0,6.63-10.85,68.43,68.43,0,0,1-10.4-5c.87-.64,1.71-1.32,2.51-2a75.52,75.52,0,0,0,72.72,0c.8,0.68,1.64,1.36,2.51,2a68.43,68.43,0,0,1-10.4,5,77.7,77.7,0,0,0,6.63,10.85,105.73,105.73,0,0,0,31-18.83C129.07,48.74,122.58,25.92,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53S36.18,40.36,42.45,40.36,53.83,46,53.83,53,48.72,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.24,60,73.24,53S78.41,40.36,84.69,40.36,96.07,46,96.07,53,91,65.69,84.69,65.69Z"/>
+                    </svg>
+                    <span>Private Beta Discord</span>
+                </a>
+                <span class="neat-footer-dot"></span>
+                <a href="privacy/index.html" class="neat-footer-link-item">Privacy</a>
+                <span class="neat-footer-dot"></span>
+                <a href="#" class="neat-footer-link-item">Terms</a>
+                <span class="neat-footer-dot"></span>
+                <a href="#" class="neat-footer-link-item">Support</a>
             </div>
         </div>
     </footer>
