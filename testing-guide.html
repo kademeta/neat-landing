@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-KDM588NT');</script>
+    <!-- End Google Tag Manager -->
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEAT — Private Beta Testing Guide</title>
+    <meta name="description" content="Welcome to the NEAT Private Beta Testing Guide. Follow these steps to install, test, and provide feedback on our local prompt compression & PII redaction Chrome extension.">
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    
+    <!-- Tailwind CSS (Purged build) -->
+    <link rel="stylesheet" href="./style.css">
+    
+    <!-- Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Bulletproof local CSS stylesheet to ensure 100% perfect styling and layout, bypassing purged Tailwind classes -->
+    <style>
+        :root {
+            --vibe-teal: #10B981;
+            --bg-obsidian: #09090b;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-obsidian);
+            color: #ffffff;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        /* 100% centering for the floating nav bar */
+        .glass-navbar {
+            position: fixed !important;
+            top: 0 !important;
+            left: 50% !important;
+            transform: translateX(-50%) !important;
+            z-index: 1000 !important;
+            width: 90% !important;
+            max-width: 1100px !important;
+            margin-top: 24px !important;
+            background: rgba(15, 15, 18, 0.4) !important;
+            backdrop-filter: blur(20px) !important;
+            -webkit-backdrop-filter: blur(20px) !important;
+            border: 1px solid rgba(255, 255, 255, 0.08) !important;
+            border-radius: 9999px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            padding: 14px 32px !important;
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7) !important;
+        }
+
+        /* Spacious Padding Top on the Hero Section to completely fix navigation overlap */
+        .guide-hero-section {
+            position: relative !important;
+            padding-top: 220px !important; /* Guaranteed clearance of navigation */
+            padding-bottom: 80px !important;
+            text-align: center !important;
+            z-index: 10 !important;
+        }
+
+        .guide-container {
+            max-width: 860px !important;
+            margin: 0 auto !important;
+            padding-left: 24px !important;
+            padding-right: 24px !important;
+            width: 100% !important;
+        }
+
+        .text-gradient {
+            background: linear-gradient(180deg, #FFFFFF 0%, #A1A1AA 100%) !important;
+            -webkit-background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+        }
+
+        .star-glow {
+            filter: drop-shadow(0 0 10px rgba(16, 185, 129, 0.5));
+        }
+
+        /* Section layout */
+        .guide-section {
+            padding: 100px 0 !important; /* Extra breathing room */
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04) !important;
+        }
+
+        .section-header {
+            text-align: center !important;
+            margin-bottom: 56px !important;
+        }
+
+        .section-tag {
+            color: #10B981 !important;
+            font-size: 11px !important;
+            font-weight: 700 !important;
+            text-transform: uppercase !important;
+            letter-spacing: 0.15em !important;
+            margin-bottom: 8px !important;
+            display: block !important;
+        }
+
+        .section-title {
+            font-size: 32px !important;
+            font-weight: 900 !important;
+            letter-spacing: -0.02em !important;
+            color: #ffffff !important;
+            margin-bottom: 12px !important;
+        }
+
+        .section-desc {
+            color: #a1a1aa !important;
+            font-size: 14px !important;
+            max-width: 500px !important;
+            margin: 0 auto !important;
+            line-height: 1.6 !important;
+        }
+
+        /* Clean, subtle hero badge (replacing cheap full-width banner) */
+        .hero-badge {
+            display: inline-flex !important;
+            align-items: center !important;
+            gap: 8px !important;
+            padding: 6px 14px !important;
+            background: rgba(16, 185, 129, 0.1) !important;
+            border: 1px solid rgba(16, 185, 129, 0.2) !important;
+            color: #10B981 !important;
+            border-radius: 9999px !important;
+            font-size: 11px !important;
+            font-weight: 600 !important;
+            margin-bottom: 24px !important;
+            text-transform: uppercase !important;
+            letter-spacing: 0.05em !important;
+            width: fit-content !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+        }
+
+        .badge-dot {
+            width: 6px !important;
+            height: 6px !important;
+            background-color: #10B981 !important;
+            border-radius: 50% !important;
+            display: inline-block !important;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.95); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(0.95); opacity: 0.5; }
+        }
+
+        /* Highly elegant vertical timeline steps (No clunky pills or overlays) */
+        .timeline-wrapper {
+            position: relative !important;
+            padding-left: 48px !important;
+            border-left: 1px solid rgba(255, 255, 255, 0.05) !important;
+            margin-left: 16px !important;
+            margin-top: 32px !important;
+        }
+
+        .timeline-step {
+            position: relative !important;
+            margin-bottom: 64px !important;
+        }
+
+        .timeline-step:last-child {
+            margin-bottom: 0 !important;
+        }
+
+        /* Bullet number rests perfectly aligned on the line, preventing all overlapping */
+        .timeline-bullet {
+            position: absolute !important;
+            left: -64px !important; /* Exactly aligned with the center of the vertical axis */
+            top: 4px !important;
+            width: 30px !important;
+            height: 30px !important;
+            background-color: var(--bg-obsidian) !important;
+            border: 1.5px solid rgba(16, 185, 129, 0.3) !important;
+            border-radius: 50% !important;
+            color: #10B981 !important;
+            font-size: 11px !important;
+            font-weight: 800 !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            z-index: 2 !important;
+        }
+
+        .step-heading {
+            font-size: 18px !important;
+            font-weight: 700 !important;
+            color: #ffffff !important;
+            margin-bottom: 8px !important;
+        }
+
+        .step-body {
+            color: #a1a1aa !important;
+            font-size: 14px !important;
+            line-height: 1.6 !important;
+            max-width: 720px !important;
+        }
+
+        /* Premium dashboard mockup boxes */
+        .placeholder-image {
+            background: radial-gradient(circle at center, rgba(16, 185, 129, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%) !important;
+            border: 1.5px dashed rgba(16, 185, 129, 0.15) !important;
+            border-radius: 12px !important;
+            padding: 24px !important;
+            margin-top: 16px !important;
+            text-align: center !important;
+            transition: all 0.3s ease !important;
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            justify-content: center !important;
+        }
+
+        .placeholder-image:hover {
+            border-color: rgba(16, 185, 129, 0.35) !important;
+            background: radial-gradient(circle at center, rgba(16, 185, 129, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%) !important;
+        }
+
+        .placeholder-title {
+            font-size: 12px !important;
+            font-weight: 700 !important;
+            color: #e4e4e7 !important;
+            margin-bottom: 4px !important;
+        }
+
+        .placeholder-sub {
+            font-size: 10px !important;
+            color: #71717a !important;
+        }
+
+        /* Premium Media/Image Containers */
+        .premium-media-container {
+            margin-top: 20px !important;
+            border-radius: 14px !important;
+            overflow: hidden !important;
+            border: 1px solid rgba(255, 255, 255, 0.08) !important;
+            background: rgba(0, 0, 0, 0.3) !important;
+            box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.6) !important;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+            width: 100% !important;
+            max-width: 600px !important;
+        }
+        .premium-media-container:hover {
+            border-color: rgba(16, 185, 129, 0.25) !important;
+            box-shadow: 0 20px 40px -8px rgba(16, 185, 129, 0.08) !important;
+            transform: translateY(-2px) !important;
+        }
+        .premium-media-container img, .premium-media-container video {
+            width: 100% !important;
+            height: auto !important;
+            display: block !important;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        }
+
+        /* Core Features Grid styling with consistent Glassmorphism */
+        .feature-stack {
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 36px !important;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.02) !important;
+            border: 1px solid rgba(255, 255, 255, 0.05) !important;
+            backdrop-filter: blur(12px) !important;
+            -webkit-backdrop-filter: blur(12px) !important;
+            border-radius: 20px !important;
+            padding: 36px !important;
+            transition: all 0.3s ease !important;
+        }
+
+        .feature-card:hover {
+            border-color: rgba(16, 185, 129, 0.2) !important;
+            background: rgba(255, 255, 255, 0.03) !important;
+            transform: translateY(-2px) !important;
+        }
+
+        .card-top {
+            display: flex !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            margin-bottom: 20px !important;
+        }
+
+        .priority-badge {
+            font-size: 10px !important;
+            font-weight: 800 !important;
+            text-transform: uppercase !important;
+            letter-spacing: 0.05em !important;
+            padding: 4px 10px !important;
+            border-radius: 9999px !important;
+        }
+
+        .priority-1 { background: rgba(239, 68, 68, 0.1) !important; border: 1px solid rgba(239, 68, 68, 0.2) !important; color: #F87171 !important; }
+        .priority-2 { background: rgba(245, 158, 11, 0.1) !important; border: 1px solid rgba(245, 158, 11, 0.2) !important; color: #FBBF24 !important; }
+        .priority-3 { background: rgba(16, 185, 129, 0.1) !important; border: 1px solid rgba(16, 185, 129, 0.2) !important; color: #34D399 !important; }
+        .priority-4 { background: rgba(113, 113, 122, 0.15) !important; border: 1px solid rgba(113, 113, 122, 0.3) !important; color: #A1A1AA !important; }
+
+        .card-label {
+            font-size: 11px !important;
+            color: #71717a !important;
+            font-weight: 500 !important;
+        }
+
+        .card-title {
+            font-size: 20px !important;
+            font-weight: 700 !important;
+            color: #ffffff !important;
+            margin-bottom: 8px !important;
+        }
+
+        .card-text {
+            color: #a1a1aa !important;
+            font-size: 14px !important;
+            line-height: 1.6 !important;
+            margin-bottom: 24px !important;
+        }
+
+        /* Prime Test Prompt layout */
+        .prime-prompt-box {
+            background: rgba(0, 0, 0, 0.4) !important;
+            border: 1px solid rgba(255, 255, 255, 0.05) !important;
+            border-radius: 12px !important;
+            padding: 20px !important;
+            margin-bottom: 20px !important;
+        }
+
+        .prime-prompt-title {
+            font-size: 12px !important;
+            font-weight: 700 !important;
+            color: #10B981 !important;
+            text-transform: uppercase !important;
+            letter-spacing: 0.05em !important;
+            margin-bottom: 8px !important;
+            display: block !important;
+        }
+
+        .prime-prompt-content {
+            font-family: monospace !important;
+            font-size: 12px !important;
+            color: #e4e4e7 !important;
+            line-height: 1.6 !important;
+            background: #09090b !important;
+            padding: 14px !important;
+            border-radius: 8px !important;
+            border: 1px solid rgba(255, 255, 255, 0.05) !important;
+            user-select: all !important;
+            display: block !important;
+        }
+
+        .prime-prompt-test-rules {
+            font-size: 12px !important;
+            color: #71717a !important;
+            margin-top: 12px !important;
+            line-height: 1.5 !important;
+        }
+
+        .test-case-grid {
+            display: grid !important;
+            grid-template-columns: 1fr !important;
+            gap: 16px !important;
+            margin-bottom: 20px !important;
+        }
+
+        @media (min-width: 640px) {
+            .test-case-grid {
+                grid-template-columns: 1fr 1fr !important;
+            }
+        }
+
+        .test-case-item {
+            background: rgba(0, 0, 0, 0.3) !important;
+            border: 1px solid rgba(255, 255, 255, 0.05) !important;
+            padding: 16px !important;
+            border-radius: 12px !important;
+        }
+
+        .test-case-item-title {
+            font-size: 12px !important;
+            font-weight: 700 !important;
+            color: #ffffff !important;
+            margin-bottom: 4px !important;
+            display: block !important;
+        }
+
+        .test-case-item-desc {
+            font-size: 12px !important;
+            color: #a1a1aa !important;
+            line-height: 1.5 !important;
+        }
+
+        /* Interactive checklist container styles */
+        .checklist-card {
+            background: rgba(255, 255, 255, 0.02) !important;
+            border: 1px solid rgba(255, 255, 255, 0.05) !important;
+            backdrop-filter: blur(12px) !important;
+            -webkit-backdrop-filter: blur(12px) !important;
+            border-radius: 20px !important;
+            padding: 36px !important;
+        }
+
+        .checklist-row {
+            display: flex !important;
+            align-items: flex-start !important;
+            gap: 16px !important;
+            padding: 12px !important;
+            border-radius: 8px !important;
+            transition: background 0.2s ease !important;
+            cursor: pointer !important;
+            user-select: none !important;
+        }
+
+        .checklist-row:hover {
+            background: rgba(255, 255, 255, 0.03) !important;
+        }
+
+        .checklist-checkbox {
+            margin-top: 3px !important;
+            width: 16px !important;
+            height: 16px !important;
+            accent-color: #10B981 !important;
+        }
+
+        .checklist-text {
+            font-size: 14px !important;
+            color: #d4d4d8 !important;
+            line-height: 1.6 !important;
+            font-weight: 500 !important;
+        }
+
+        /* Feedback Grid layout */
+        .feedback-grid {
+            display: grid !important;
+            grid-template-columns: 1fr !important;
+            gap: 24px !important;
+            text-align: left !important;
+        }
+
+        @media (min-width: 768px) {
+            .feedback-grid {
+                grid-template-columns: 1fr 1fr !important;
+            }
+        }
+
+        .feedback-card {
+            background: rgba(255, 255, 255, 0.02) !important;
+            border: 1px solid rgba(255, 255, 255, 0.05) !important;
+            backdrop-filter: blur(12px) !important;
+            -webkit-backdrop-filter: blur(12px) !important;
+            border-radius: 20px !important;
+            padding: 36px !important;
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: space-between !important;
+        }
+
+        .discord-button {
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            padding: 12px 28px !important;
+            background: #10B981 !important;
+            color: #09090b !important;
+            font-weight: 700 !important;
+            font-size: 13px !important;
+            border-radius: 9999px !important;
+            transition: all 0.3s ease !important;
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.2) !important;
+            width: fit-content !important;
+        }
+
+        .discord-button:hover {
+            background: #059669 !important;
+            box-shadow: 0 0 30px rgba(16, 185, 129, 0.4) !important;
+            transform: translateY(-2px) !important;
+        }
+
+        /* Simple general scrollbar styling */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-obsidian); }
+        ::-webkit-scrollbar-thumb { background: #27272a; border-radius: 10px; }
+
+        /* Sync structural spacing for footer */
+        .neat-footer-container {
+            max-width: 1100px !important;
+            margin: 0 auto !important;
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: space-between !important;
+            align-items: center !important;
+            gap: 24px !important;
+        }
+        @media (min-width: 768px) {
+            .neat-footer-container {
+                flex-direction: row !important;
+                gap: 0 !important;
+            }
+        }
+        .neat-footer-logo-block {
+            display: flex !important;
+            align-items: center !important;
+            gap: 16px !important;
+        }
+        .neat-footer-logo {
+            height: 20px !important;
+            width: auto !important;
+        }
+        .neat-footer-copyright {
+            font-size: 11px !important;
+            color: #52525b !important;
+            font-weight: 600 !important;
+            letter-spacing: 0.05em !important;
+        }
+        .neat-footer-links {
+            display: flex !important;
+            align-items: center !important;
+            flex-wrap: wrap !important;
+            justify-content: center !important;
+            gap: 16px !important;
+        }
+        .neat-footer-link-item {
+            font-size: 11px !important;
+            color: #a1a1aa !important;
+            font-weight: 600 !important;
+            text-transform: uppercase !important;
+            letter-spacing: 0.05em !important;
+            transition: color 0.2s ease !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            gap: 6px !important;
+        }
+        .neat-footer-link-item:hover {
+            color: #10B981 !important;
+        }
+        .neat-footer-dot {
+            width: 4px !important;
+            height: 4px !important;
+            background-color: #27272a !important;
+            border-radius: 50% !important;
+            display: none !important;
+        }
+        @media (min-width: 640px) {
+            .neat-footer-dot {
+                display: inline-block !important;
+            }
+        }
+    </style>
+</head>
+<body class="selection:bg-emerald-500/30 selection:text-white">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KDM588NT"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <!-- Navigation Header (With centering class fixed-navbar) -->
+    <nav class="glass-navbar">
+        <div class="flex items-center">
+            <a href="index.html" class="text-white font-bold tracking-widest uppercase text-sm flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 212.142 83.375" style="height: 24px !important; width: auto !important; display: block !important;">
+                    <path d="M196.906,14.221l2.8,22.344c.142,1.132.955,2.066,2.056,2.362l9.559,2.574c1.095.295,1.095,1.848,0,2.142l-9.82,2.644c-.966.26-1.721,1.015-1.981,1.981l-2.644,9.82c-.295,1.095-1.848,1.095-2.142,0l-2.644-9.82c-.26-.966-1.015-1.721-1.981-1.981l-9.82-2.644c-1.095-.295-1.095-1.848,0-2.142l9.559-2.574c1.102-.297,1.914-1.23,2.056-2.362l2.8-22.344c.162-1.295,2.039-1.295,2.201,0Z" fill="#10B981" class="star-glow"/>
+                    <g fill="currentColor">
+                        <path d="M11.593,21.236v38.739h-5.976V11.947h6.12l27.65,37.947V11.947h5.977v48.028h-5.76L11.593,21.236Z" />
+                        <path d="M56.592,11.947h31.466v5.329h-25.49v15.481h24.986v5.328h-24.986v16.562h25.49v5.329h-31.466V11.947Z" />
+                        <path d="M127.801,49.319h-24.338l-4.249,10.657h-6.625l19.298-48.028h7.417l19.37,48.028h-6.624l-4.249-10.657ZM105.191,43.99h20.81l-10.369-26.714-10.441,26.714Z" />
+                        <path d="M151.992,17.276h-15.192v-5.329h36.435v5.329h-15.266v42.7h-5.977V17.276Z" />
+                    </g>
+                </svg>
+            </a>
+        </div>
+        
+        <div style="display: flex; gap: 32px; font-size: 13px; font-weight: 500; color: #a1a1aa;">
+            <a href="index.html" style="color: inherit; text-decoration: none;" class="hover:text-white transition-colors">Home</a>
+            <a href="#installation" style="color: inherit; text-decoration: none;" class="hover:text-white transition-colors">Installation</a>
+            <a href="#what-to-test" style="color: inherit; text-decoration: none;" class="hover:text-white transition-colors">What to Test</a>
+            <a href="#checklist" style="color: inherit; text-decoration: none;" class="hover:text-white transition-colors">Checklist</a>
+            <a href="#feedback" style="color: inherit; text-decoration: none;" class="hover:text-white transition-colors">Give Feedback</a>
+        </div>
+
+        <a href="index.html" style="text-decoration: none; padding: 8px 20px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #ffffff; border-radius: 9999px; font-size: 13px; font-weight: 600;" class="hover:bg-white/10 transition-colors">
+            Back to Home
+        </a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="guide-hero-section">
+        <div class="absolute top-[-10%] left-[20%] w-[600px] h-[600px] rounded-full bg-emerald-500/5 blur-[120px] pointer-events-none"></div>
+        
+        <div class="guide-container">
+            <!-- Modern premium badge integrated into hero (replacing discolored top capsule banner) -->
+            <div class="hero-badge">
+                <span class="badge-dot"></span>
+                NEAT Beta Program
+            </div>
+            
+            <h1 class="text-4xl md:text-6xl font-black tracking-tight mb-6 leading-tight text-gradient">
+                NEAT Private Beta Testing Guide
+            </h1>
+            
+            <div style="max-width: 680px; margin: 0 auto;" class="space-y-4">
+                <p style="font-size: 17px; color: #e4e4e7; font-weight: 500; line-height: 1.6;">
+                    Welcome to the inner circle! We are incredibly thrilled to have you as a private beta tester for NEAT.
+                </p>
+                <p style="font-size: 14px; color: #a1a1aa; line-height: 1.7;">
+                    Our goal is to build a flawless, privacy-first context engine that makes prompt engineering ultra-efficient. Your rigorous, real-world testing directly helps us locate edge cases, refine our local heuristics, and sharpen our visual mechanics before launching to the public. Let's make this tool remarkable!
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Step-by-Step Installation Section -->
+    <section id="installation" class="guide-section bg-[#0d0d12]">
+        <div class="guide-container">
+            <div class="section-header">
+                <span class="section-tag">Section 01</span>
+                <h2 class="section-title">Step-by-Step Installation</h2>
+                <p class="section-desc">Get up and running with the NEAT pre-release builds in seconds.</p>
+            </div>
+
+            <!-- Sleek Minimalistic Vertical Timeline (Highly elegant custom CSS) -->
+            <div class="timeline-wrapper">
+                
+                <!-- Step 1 -->
+                <div class="timeline-step">
+                    <div class="timeline-bullet">1</div>
+                    <div class="timeline-content">
+                        <h3 class="step-heading">Authorized Web Store Access</h3>
+                        <p class="step-body">
+                            Ensure you are logged into your authorized Chrome testing Google account. Click our private invitation link to navigate to our developer pre-release invitation page on the Chrome Web Store and select <strong>"Add to Chrome"</strong>.
+                        </p>
+                        <div style="margin-top: 12px;">
+                            <a href="https://chromewebstore.google.com/detail/neat/jmbpocllnhlijgpjgfighlgebbngglmb" target="_blank" rel="noopener noreferrer" style="text-decoration: none; display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #ffffff; border-radius: 9999px; font-size: 12px; font-weight: 600;" class="hover:bg-white/10 transition-all">
+                                Go to Authorized Web Store Link
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="timeline-step">
+                    <div class="timeline-bullet">2</div>
+                    <div class="timeline-content">
+                        <h3 class="step-heading">Pin the NEAT Extension</h3>
+                        <p class="step-body">
+                            After adding NEAT, click on the Extensions jigsaw puzzle icon in the top right corner of your Chrome browser window. Find NEAT in the list and click the <strong>Pin icon</strong> so it is always active and visible in your toolbar.
+                        </p>
+                        <!-- Pinned Extension Mockup -->
+                        <div class="premium-media-container">
+                            <img src="assets/pin-extension-dark.png" alt="Chrome extensions bar pinning NEAT">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="timeline-step">
+                    <div class="timeline-bullet">3</div>
+                    <div class="timeline-content">
+                        <h3 class="step-heading">Access the Toolbar Popup</h3>
+                        <p class="step-body">
+                            Click the pinned NEAT icon in your toolbar. You will be greeted by our onboarding interface where you can review your saved AI tokens dashboard, adjust models, and set custom triggers.
+                        </p>
+                        <!-- Pinned popup Dashboard visual -->
+                        <div class="premium-media-container">
+                            <img src="assets/hero-dashboard.png" alt="NEAT toolbar onboarding interface dashboard">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="timeline-step">
+                    <div class="timeline-bullet">4</div>
+                    <div class="timeline-content">
+                        <h3 class="step-heading">Launch ChatGPT, Claude, or Grok</h3>
+                        <p class="step-body">
+                            Head to your generative AI interface of choice. You will see NEAT's custom control pill embedded right on top of the prompt text box field, automatically active for live context injection and secure PII masking!
+                        </p>
+                        <!-- Prompt embed active toolbar visual -->
+                        <div class="premium-media-container">
+                            <img src="assets/workflow-01-unified-control.png" alt="NEAT prompt toolbar controller active in ChatGPT">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- What to Test Section -->
+    <section id="what-to-test" class="guide-section">
+        <div class="guide-container">
+            <div class="section-header">
+                <span class="section-tag">Section 02</span>
+                <h2 class="section-title">Core Features to Test</h2>
+                <p class="section-desc">Please direct your focus toward these crucial components. High emphasis on Vibe Mode!</p>
+            </div>
+
+            <div class="feature-stack">
+                <!-- Priority 1: Vibe Mode -->
+                <div class="feature-card">
+                    <div class="card-top">
+                        <span class="priority-badge priority-1">Priority 1</span>
+                        <span class="card-label">Compression Core</span>
+                    </div>
+                    
+                    <h3 class="card-title">Vibe Mode & Prompt Compression</h3>
+                    <p class="card-text">
+                        Vibe Mode is our signature feature. It strips verbose conversational filler words client-side to decrease context token count, saving money and increasing generation speed while keeping the core semantic prompt parameters intact.
+                    </p>
+
+                    <!-- Prime Test Prompt Box -->
+                    <div class="prime-prompt-box">
+                        <div style="display: flex; justify-content: justify-between; align-items: center; margin-bottom: 12px;">
+                            <span class="prime-prompt-title">⚡ Prime Test Prompt: Alex Rivera / PhotoFlow</span>
+                            <span style="font-size: 10px; color: #71717a;">Copy & paste directly</span>
+                        </div>
+                        <span class="prime-prompt-content">
+                            "Hello! Could you please act as a senior software consultant? I really need help. Can you look at this code? My CEO, Alex Rivera, at PhotoFlow asked me to implement a fast local cache using custom middleware. Please make it extremely detailed, clean, and highly secure. Let's do this step by step. Thank you so much!"
+                        </span>
+                        <div class="prime-prompt-test-rules">
+                            <p>• <strong>The Goal:</strong> Paste this prompt with Vibe Mode enabled.</p>
+                            <p style="margin-top: 4px;">• <strong>Expected Behavior:</strong> NEAT should automatically remove the conversational fluff (like "Hello", "please act", "I really need help", "Thank you so much") and compress the overall prompt length by 30-50%, while leaving critical identifiers (*senior software consultant*, *Alex Rivera*, *PhotoFlow*, *local cache*, *custom middleware*) fully intact.</p>
+                        </div>
+                    </div>
+
+                    <!-- Vibe Mode Demo Video -->
+                    <div class="premium-media-container" style="max-width: 100% !important;">
+                        <video src="assets/live-optimization-loop.mp4" autoplay loop muted playsinline></video>
+                    </div>
+                </div>
+
+                <!-- Priority 2: PII Shield -->
+                <div class="feature-card">
+                    <div class="card-top">
+                        <span class="priority-badge priority-2">Priority 2</span>
+                        <span class="card-label">Local Privacy Shield</span>
+                    </div>
+                    
+                    <h3 class="card-title">PII Shield & One-Click Recovery</h3>
+                    <p class="card-text">
+                        NEAT operates 100% locally. The security classifier automatically scans and masks passwords, emails, credentials, and API keys with a generic token (e.g. `[EMAIL_1]`) client-side before the data is transmitted to the AI provider.
+                    </p>
+
+                    <div class="test-case-grid">
+                        <div class="test-case-item">
+                            <span class="test-case-item-title">Test Case 1: Redaction</span>
+                            <p class="test-case-item-desc">Type a mock API key like <code style="color: #10B981; font-family: monospace;">sk-proj-4j1A8f...</code> or an email address inside your prompt box. Confirm that characters are redacted immediately.</p>
+                        </div>
+                        <div class="test-case-item">
+                            <span class="test-case-item-title">Test Case 2: Recovery Button</span>
+                            <p class="test-case-item-desc">Locate the masked tags. Hover over the redacted block inside the NEAT toolbar element and click the <strong>Recovery Button</strong> to instantly revert specific values prior to submitting.</p>
+                        </div>
+                    </div>
+
+                    <!-- PII Shield Active Visual -->
+                    <div class="premium-media-container" style="max-width: 100% !important;">
+                        <img src="assets/workflow-03-privacy-recovery.png" alt="PII Shield Active & Live Token Masking">
+                    </div>
+                </div>
+
+                <!-- Priority 3: Tags & Injection -->
+                <div class="feature-card">
+                    <div class="card-top">
+                        <span class="priority-badge priority-3">Priority 3</span>
+                        <span class="card-label">Workflows</span>
+                    </div>
+                    
+                    <h3 class="card-title">Context Tags & Snippet Injection</h3>
+                    <p class="card-text">
+                        Store extensive code rules, system guidelines, API definitions, or templates inside the toolbar dashboard, and inject them instantly inside Chat interfaces using keyboard triggers.
+                    </p>
+
+                    <div class="prime-prompt-box">
+                        <span class="prime-prompt-title">Example Trigger Test:</span>
+                        <p class="prime-prompt-test-rules" style="margin-top: 4px; font-size: 13px;">
+                            1. Open the popup settings tab. Add a template tag called <code style="color: #10B981; font-family: monospace;">#api-spec</code> with a mock JSON schema context.
+                        </p>
+                        <p class="prime-prompt-test-rules" style="margin-top: 6px; font-size: 13px;">
+                            2. Go to your prompt text field, type <code style="color: #10B981; font-family: monospace;">#api-spec</code>, and press space. Verify that the preset expands and injects your pre-saved JSON context instantly!
+                        </p>
+                    </div>
+
+                    <!-- Context Tags Dashboard visual -->
+                    <div class="premium-media-container" style="margin-left: auto !important; margin-right: auto !important;">
+                        <img src="assets/screenshot-dash-final-ultimate.png" alt="NEAT+ Context Tags Dashboard">
+                    </div>
+                </div>
+
+                <!-- Priority 4: Settings & Metrics -->
+                <div class="feature-card">
+                    <div class="card-top">
+                        <span class="priority-badge priority-4">Priority 4</span>
+                        <span class="card-label">Analytics</span>
+                    </div>
+                    
+                    <h3 class="card-title">Settings Panel & Real-Time Insights</h3>
+                    <p class="card-text">
+                        Confirm that metric calculations for saved prompts accumulate correctly. Inspect variables (total tokens saved, cumulative cash value saved) in your pinned extension dashboard.
+                    </p>
+
+                    <div class="test-case-grid">
+                        <div class="premium-media-container" style="margin-top: 0 !important; max-width: 100% !important;">
+                            <img src="assets/screenshot-settings-vertical.png" alt="Granular Settings Control Panel">
+                        </div>
+                        <div class="premium-media-container" style="margin-top: 0 !important; max-width: 100% !important;">
+                            <img src="assets/hero-dashboard.png" alt="NEAT Real-Time Insights Dashboard">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Detailed Testing Checklist -->
+    <section id="checklist" class="guide-section bg-[#0d0d12]">
+        <div class="guide-container">
+            <div class="section-header">
+                <span class="section-tag">Section 03</span>
+                <h2 class="section-title">Interactive Testing Checklist</h2>
+                <p class="section-desc">Please complete this checklist as you stress-test the extension. Click to check off items!</p>
+            </div>
+
+            <div class="checklist-card">
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                    
+                    <label class="checklist-row">
+                        <input type="checkbox" class="checklist-checkbox">
+                        <span class="checklist-text">Verify standard prompt execution operates flawlessly in ChatGPT, Claude, and Grok with NEAT enabled.</span>
+                    </label>
+                    
+                    <label class="checklist-row">
+                        <input type="checkbox" class="checklist-checkbox">
+                        <span class="checklist-text">Toggle <strong>Vibe Mode</strong> on and verify prompts are visibly compressed before sending.</span>
+                    </label>
+
+                    <label class="checklist-row">
+                        <input type="checkbox" class="checklist-checkbox">
+                        <span class="checklist-text">Stress-test Vibe Mode compression using our "Alex Rivera / PhotoFlow" Prime Prompt. Verify semantics are perfectly accurate and token saving reaches 30-50%.</span>
+                    </label>
+
+                    <label class="checklist-row">
+                        <input type="checkbox" class="checklist-checkbox">
+                        <span class="checklist-text">Perform a <strong>stress test paste</strong> inside the input box in Vibe Mode. Confirm zero typing delay or screen latency.</span>
+                    </label>
+
+                    <label class="checklist-row">
+                        <input type="checkbox" class="checklist-checkbox">
+                        <span class="checklist-text">Confirm that local sensitive items (names, credentials, emails) are redacted automatically.</span>
+                    </label>
+
+                    <label class="checklist-row">
+                        <input type="checkbox" class="checklist-checkbox">
+                        <span class="checklist-text">Verify the <strong>One-Click Recovery</strong> trigger properly reverts specific masked keys.</span>
+                    </label>
+
+                    <label class="checklist-row">
+                        <input type="checkbox" class="checklist-checkbox">
+                        <span class="checklist-text">Verify template snippet injection works instantly by typing pre-saved shortcut tags inside text boxes.</span>
+                    </label>
+
+                    <label class="checklist-row">
+                        <input type="checkbox" class="checklist-checkbox">
+                        <span class="checklist-text">Adjust model configurations and thresholds inside the Settings panel to confirm changes persist correctly.</span>
+                    </label>
+
+                    <label class="checklist-row">
+                        <input type="checkbox" class="checklist-checkbox">
+                        <span class="checklist-text">Inspect the Insights panel inside your pinned popup toolbar to confirm calculations increase sequentially.</span>
+                    </label>
+
+                    <label class="checklist-row">
+                        <input type="checkbox" class="checklist-checkbox">
+                        <span class="checklist-text">Complete test runs across all three portals (ChatGPT, Claude, and Grok) to verify perfect platform compatibility.</span>
+                    </label>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How to Give Feedback -->
+    <section id="feedback" class="guide-section">
+        <div class="guide-container" style="text-align: center;">
+            <div class="section-header">
+                <span class="section-tag">Section 04</span>
+                <h2 class="section-title" style="font-size: 32px !important;">How to Give Feedback</h2>
+                <p class="section-desc" style="max-w: 560px !important;">Your feedback directly shapes our product. We appreciate detailed bug reports, UX suggestions, and feature request logs.</p>
+            </div>
+
+            <div class="feedback-grid">
+                <div class="feedback-card">
+                    <div>
+                        <h3 class="step-heading" style="font-size: 16px !important;">💬 Discord Beta Channels</h3>
+                        <p class="step-body" style="font-size: 13px !important; margin-bottom: 12px;">Our dedicated Discord beta channels are the primary method of chat. Drop ideas, talk to the developers, and coordinate with other testers.</p>
+                        <ul style="list-style-type: none; padding-left: 0; font-size: 12px; color: #71717a; margin-bottom: 24px;">
+                            <li style="margin-bottom: 4px;">• <code style="color: #10B981; font-family: monospace;">#neat-beta-bugs</code> for active crash/ui bugs</li>
+                            <li>• <code style="color: #10B981; font-family: monospace;">#neat-beta-features</code> for ideas and improvements</li>
+                        </ul>
+                    </div>
+                    <a href="https://discord.gg/eGRb3dXtmG" target="_blank" rel="noopener noreferrer" class="discord-button">
+                        Join Discord channels
+                    </a>
+                </div>
+
+                <div class="feedback-card" style="justify-content: flex-start;">
+                    <h3 class="step-heading" style="font-size: 16px !important;">🐛 Filing Bug Reports</h3>
+                    <p class="step-body" style="font-size: 13px !important; margin-bottom: 20px;">Use our standardized template for bug reports in Discord so we can resolve issues rapidly. Click the button below to copy the preformatted Markdown report template to your clipboard.</p>
+                    
+                    <button id="copy-bug-template-btn" class="discord-button" style="border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; width: 100%; margin-bottom: 20px; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);">
+                        <svg id="copy-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                        <span id="copy-btn-text">Copy Discord Bug Template</span>
+                    </button>
+
+                    <div style="font-size: 11px; color: #71717a; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 16px; margin-top: auto; display: flex; align-items: center; justify-content: space-between;">
+                        <span>📧 Reach developers at: <span style="color: #ffffff; font-weight: 600;">beta@getneat.io</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 56px;">
+                <p style="font-size: 14px; color: #71717a;">Thank you again for pushing the boundaries of local AI efficiency with us!</p>
+                <div style="color: #ffffff; font-weight: 700; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 6px;">— The NEAT Labs Team</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="padding: 48px 0; background: #09090b; border-top: 1px solid rgba(255, 255, 255, 0.05);">
+        <div class="guide-container">
+            <div class="neat-footer-container">
+                <div class="neat-footer-logo-block">
+                    <svg id="neat-logo-full-footer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 212.142 83.375" class="neat-footer-logo">
+                        <g id="neat-logo-elements-footer">
+                            <path d="M196.906,14.221l2.8,22.344c.142,1.132.955,2.066,2.056,2.362l9.559,2.574c1.095.295,1.095,1.848,0,2.142l-9.82,2.644c-.966.26-1.721,1.015-1.981,1.981l-2.644,9.82c-.295,1.095-1.848,1.095-2.142,0l-2.644-9.82c-.26-.966-1.015-1.721-1.981-1.981l-9.82-2.644c-1.095-.295-1.095-1.848,0-2.142l9.559-2.574c1.102-.297,1.914-1.23,2.056-2.362l2.8-22.344c.162-1.295,2.039-1.295,2.201,0Z" fill="#10B981" />
+                            <g fill="currentColor">
+                                <path d="M11.593,21.236v38.739h-5.976V11.947h6.12l27.65,37.947V11.947h5.977v48.028h-5.76L11.593,21.236Z" />
+                                <path d="M56.592,11.947h31.466v5.329h-25.49v15.481h24.986v5.328h-24.986v16.562h25.49v5.329h-31.466V11.947Z" />
+                                <path d="M127.801,49.319h-24.338l-4.249,10.657h-6.625l19.298-48.028h7.417l19.37,48.028h-6.624l-4.249-10.657ZM105.191,43.99h20.81l-10.369-26.714-10.441,26.714Z" />
+                                <path d="M151.992,17.276h-15.192v-5.329h36.435v5.329h-15.266v42.7h-5.977V17.276Z" />
+                            </g>
+                        </g>
+                    </svg>
+                    <span class="neat-footer-copyright">© 2026 NEAT LABS</span>
+                </div>
+                <div class="neat-footer-links">
+                    <a href="https://discord.gg/eGRb3dXtmG" target="_blank" rel="noopener noreferrer" class="neat-footer-link-item">
+                        <svg style="width: 14px !important; height: 14px !important; fill: currentColor !important; display: inline-block !important; vertical-align: middle !important;" viewBox="0 0 127.14 96.36" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M107.7,8.07A105.15,105.15,0,0,0,77.26,0a77.19,77.19,0,0,0-3.3,6.83A96.67,96.67,0,0,0,53.22,6.83,77.19,77.19,0,0,0,49.88,0,105.15,105.15,0,0,0,19.44,8.07C3.66,31.58-1.86,54.65,1,77.53A105.73,105.73,0,0,0,32,96.36a77.7,77.7,0,0,0,6.63-10.85,68.43,68.43,0,0,1-10.4-5c.87-.64,1.71-1.32,2.51-2a75.52,75.52,0,0,0,72.72,0c.8,0.68,1.64,1.36,2.51,2a68.43,68.43,0,0,1-10.4,5,77.7,77.7,0,0,0,6.63,10.85,105.73,105.73,0,0,0,31-18.83C129.07,48.74,122.58,25.92,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53S36.18,40.36,42.45,40.36,53.83,46,53.83,53,48.72,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.24,60,73.24,53S78.41,40.36,84.69,40.36,96.07,46,96.07,53,91,65.69,84.69,65.69Z"/>
+                        </svg>
+                        <span>Private Beta Discord</span>
+                    </a>
+                    <span class="neat-footer-dot"></span>
+                    <a href="/privacy" class="neat-footer-link-item">Privacy</a>
+                    <span class="neat-footer-dot"></span>
+                    <a href="#" class="neat-footer-link-item">Terms</a>
+                    <span class="neat-footer-dot"></span>
+                    <a href="#" class="neat-footer-link-item">Support</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Clipboard Bug Template Copy Utility
+        const bugTemplate = `📌  **Bug Report Template**
+
+Use this format for every bug report so we can fix things faster:
+
+**Severity:** *( place an 'x' in the '[ ]' next to your choice. Example: [x] )*
+- [ ]  🔴  Critical
+- [ ]  🟠  High
+- [ ]  🟡  Medium
+- [ ]  🟢  Low
+
+**Feature:** *( place an 'x' in the '[ ]' next to your choice. Example: [x] )*
+- [ ] PII Shield
+- [ ] Vibe ⚡ Mode
+- [ ] Toolbar
+- [ ] Insights
+- [ ] Recovery button
+- [ ] Other
+
+**Steps to Reproduce:**
+1. 
+2. 
+3.
+
+**Expected vs Actual:**
+
+**Environment:**
+- Chrome version:
+- OS:
+- Site:
+- NEAT version:
+
+**Screenshots / Video:**
+**Prompt sample (remove real PII):**`;
+
+        const copyBtn = document.getElementById("copy-bug-template-btn");
+        const copyBtnText = document.getElementById("copy-btn-text");
+        const copyIcon = document.getElementById("copy-icon");
+
+        if (copyBtn) {
+            copyBtn.addEventListener("click", async () => {
+                try {
+                    await navigator.clipboard.writeText(bugTemplate);
+                    
+                    // Success state UI animation
+                    copyBtn.style.background = "#10B981";
+                    copyBtn.style.color = "#09090b";
+                    copyBtnText.textContent = "Copied to Clipboard!";
+                    copyIcon.outerHTML = `<svg id="copy-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="stroke: #09090b;"><path d="M20 6 9 17l-5-5"/></svg>`;
+                    
+                    setTimeout(() => {
+                        // Restore original state
+                        copyBtn.style.background = "";
+                        copyBtn.style.color = "";
+                        const currentIcon = document.getElementById("copy-icon");
+                        if (currentIcon) {
+                            currentIcon.outerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" id="copy-icon"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>`;
+                        }
+                        copyBtnText.textContent = "Copy Discord Bug Template";
+                    }, 3000);
+                } catch (err) {
+                    console.error("Failed to copy text: ", err);
+                    alert("Failed to copy template automatically. Please copy it from Discord!");
+                }
+            });
+        }
+
+        // Scroll Reveal Animation (subtle, high premium feeling)
+        const reveals = document.querySelectorAll(".timeline-step, .feature-card, .checklist-card, .feedback-card");
+        
+        function reveal() {
+            const windowHeight = window.innerHeight;
+            reveals.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 80;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    element.style.opacity = "1";
+                    element.style.transform = "translateY(0)";
+                    element.style.transition = "all 0.6s cubic-bezier(0.16, 1, 0.3, 1)";
+                }
+            });
+        }
+
+        // Initialize state prior to animation to avoid flashes
+        reveals.forEach(element => {
+            element.style.opacity = "0";
+            element.style.transform = "translateY(12px)";
+        });
+
+        window.addEventListener("scroll", reveal);
+        // Trigger once immediately
+        reveal();
+    </script>
+</body>
+</html>
